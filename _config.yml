@@ -19,7 +19,7 @@ locale                   : "en-US"
 title                    : "Site Title"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : "Your Name"
+name                     : "Jeong Mok Kim"
 description              : "An amazing website."
 url                      : "https://siggu.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
@@ -27,7 +27,7 @@ repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-m
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
-# breadcrumbs            : false # true, false (default)
+# breadcrumbs            : true # true, false (default)
 words_per_minute         : 200
 comments:
   provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
@@ -61,7 +61,7 @@ atom_feed:
   hide                   : # true, false (default)
 search                   : # true, false (default)
 search_full_content      : # true, false (default)
-search_provider          : # lunr (default), algolia, google
+search_provider          : google #lunr (default), algolia, google
 lunr:
   search_within_pages    : # true, false (default)
 algolia:
@@ -104,11 +104,11 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Name"
+  name             : "Kim Jeong Mok"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
-  location         : "Somewhere"
-  email            :
+  bio              : ""
+  location         : "South Korea"
+  email            : "m0_w_0m@naver.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
