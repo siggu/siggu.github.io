@@ -1,6 +1,6 @@
 # __로지스틱 회귀 분류기 튜토리얼__
 
-캐글에 있는 [Prashant Banerjee](https://www.kaggle.com/prashant111)라는 분이 작성한 로지스틱 회귀 분류기 튜토리얼을 정리하려고 한다. [Logistic Regression Classifier Tutorial](https://www.kaggle.com/code/prashant111/logistic-regression-classifier-tutorial)
+캐글에 있는 [Prashant Banerjee](https://www.kaggle.com/prashant111)라는 분이 작성한 로지스틱 회귀 분류기 튜토리얼[Logistic Regression Classifier Tutorial](https://www.kaggle.com/code/prashant111/logistic-regression-classifier-tutorial)을 정리하려고 한다. 
 
 <br>
 
