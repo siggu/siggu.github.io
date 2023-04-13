@@ -2653,7 +2653,7 @@ fig.set_ylabel('WindSpeed3pm')
    
 
 
-![image]("")
+![image](https://user-images.githubusercontent.com/106001755/231873176-79486bf8-2a57-40a2-849c-8bbf7f21abe1.png)
 
 <br>
 
@@ -2699,6 +2699,9 @@ fig.set_ylabel('RainTomorrow')
 
     Text(0, 0.5, 'RainTomorrow')
     
+![image](https://user-images.githubusercontent.com/106001755/231873288-b47d7036-8532-44b8-8b4b-436f30d4e527.png)
+
+
 
 <br>
 
@@ -5070,9 +5073,10 @@ sns.heatmap(cm_matrix, annot=True, fmt='d', cmap='YlGnBu')
 
 
 
+![image](https://user-images.githubusercontent.com/106001755/231873438-8d52c702-dbe8-4a3a-af98-a87d72d9ab47.png)
 
     
-![png](output_202_1.png)
+
 
 <br>
 
@@ -5438,7 +5442,7 @@ plt.ylabel('Frequency')
 
 
     
-![png](output_229_1.png)
+![image](https://user-images.githubusercontent.com/106001755/231873492-b87ba637-eeab-4da4-9837-c1d729453532.png)
 
 
 
@@ -5632,7 +5636,7 @@ plt.show()
 
 
     
-![png](output_235_0.png)
+![image](https://user-images.githubusercontent.com/106001755/231873524-30b35f73-1978-4be5-a354-f9b46fd957e0.png)
 
 
 ### __ROC-AUC__
