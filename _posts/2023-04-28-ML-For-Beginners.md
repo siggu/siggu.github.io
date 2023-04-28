@@ -288,7 +288,7 @@ input {
 
 마지막으로, 모델의 사용과 예측 표시를 구동하는 Python 파일을 작성할 준비가 되었다.
 
-1. app.py에 내용을 추가해보자.
+9. app.py에 내용을 추가해보자.
 
 ```python
 import numpy as np
