@@ -1,3 +1,8 @@
+---
+layout: single
+title:  "ML Model을 사용해 Web App 만들기"
+---
+
 # ML Model을 사용해 Web App 만들기
 
 [ML-For-Beginners]([https://github.com/microsoft/ML-For-Beginners/blob/main/3-Web-App/1-Web-App/README.md](https://github.com/microsoft/ML-For-Beginners/blob/main/3-Web-App/1-Web-App/README.md))에 있는 내용을 통해 Web App을 만들어볼 것이다.
