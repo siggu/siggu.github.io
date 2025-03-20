@@ -283,6 +283,7 @@ compress_html:
 
 # Defaults
 defaults:
+  # _posts
   - scope:
       path: ""
       type: posts
@@ -295,37 +296,11 @@ defaults:
       related: true
       sitemap: true
 
-  # 커스텀 컬렉션도 posts처럼 동작하도록 설정
-  - scope:
-      path: ""
-      type: machine-learning
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      share: true
-      related: true
-      sitemap: true
-
-  - scope:
-      path: ""
-      type: til
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      share: true
-      related: true
-      sitemap: true
-
-  - scope:
-      path: ""
-      type: react
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      share: true
-      related: true
-      sitemap: true
-
+# Collections
+collections:
+  machine-learning:
+    output: true
+  til:
+    output: true
+  react:
+    output: true
