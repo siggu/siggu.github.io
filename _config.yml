@@ -158,6 +158,7 @@ footer:
 include:
   - .htaccess
   - _pages
+  - public
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -232,6 +233,7 @@ plugins:
   - jekyll-gist
   - jekyll-feed
   - jekyll-include-cache
+  - jekyll-seo-tag
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -292,3 +294,4 @@ defaults:
       comments: # true
       share: true
       related: true
+      sitemap: true
