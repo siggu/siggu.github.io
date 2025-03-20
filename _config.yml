@@ -298,9 +298,7 @@ defaults:
 
 # Collections
 collections:
-  machine-learning:
+  categories:
     output: true
-  til:
-    output: true
-  react:
-    output: true
+    permalink: /:collection/:path/
+
