@@ -1,12 +1,13 @@
 ---
 layout: single
-title:  "ML Model을 사용해 Web App 만들기"
+title: "ML Model을 사용해 Web App 만들기"
+category: machine-learning
+tags: ["머신러닝", "웹앱"]
 ---
 
 # ML Model을 사용해 Web App 만들기
 
-[ML-For-Beginners]([https://github.com/microsoft/ML-For-Beginners/blob/main/3-Web-App/1-Web-App/README.md](https://github.com/microsoft/ML-For-Beginners/blob/main/3-Web-App/1-Web-App/README.md))에 있는 내용을 통해 Web App을 만들어볼 것이다.
-
+[ML-For-Beginners](<[https://github.com/microsoft/ML-For-Beginners/blob/main/3-Web-App/1-Web-App/README.md](https://github.com/microsoft/ML-For-Beginners/blob/main/3-Web-App/1-Web-App/README.md)>)에 있는 내용을 통해 Web App을 만들어볼 것이다.
 
 이 강좌에서는 NUFORC 데이터베이스에서 가져온 지난 백 년간의 UFO 목격 보고서를 기반으로 ML 모델을 훈련시키는 방법에 대해 다룬다.
 
@@ -20,7 +21,6 @@ title:  "ML Model을 사용해 Web App 만들기"
 이를 위해서, Flask를 이용해 웹 앱을 구축해야 한다.
 
 <br>
-
 
 ## 강의 전 퀴즈
 
@@ -38,9 +38,9 @@ title:  "ML Model을 사용해 Web App 만들기"
 - **Where will the model reside?** In the cloud or locally?
 - **Offline support.** Does the app have to work offline?
 - **What technology was used to train the model?** The chosen technology may influence the tooling you need to use.
-    - **Using TensorFlow.** If you are training a model using TensorFlow, for example, that ecosystem provides the ability to convert a TensorFlow model for use in a web app by using [TensorFlow.js](https://www.tensorflow.org/js/).
-    - **Using PyTorch.** If you are building a model using a library such as [PyTorch](https://pytorch.org/), you have the option to export it in [ONNX](https://onnx.ai/) (Open Neural Network Exchange) format for use in JavaScript web apps that can use the [Onnx Runtime](https://www.onnxruntime.ai/). This option will be explored in a future lesson for a Scikit-learn-trained model.
-    - **Using Lobe.ai or Azure Custom Vision.** If you are using an ML SaaS (Software as a Service) system such as [Lobe.ai](https://lobe.ai/) or [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott) to train a model, this type of software provides ways to export the model for many platforms, including building a bespoke API to be queried in the cloud by your online application.
+  - **Using TensorFlow.** If you are training a model using TensorFlow, for example, that ecosystem provides the ability to convert a TensorFlow model for use in a web app by using [TensorFlow.js](https://www.tensorflow.org/js/).
+  - **Using PyTorch.** If you are building a model using a library such as [PyTorch](https://pytorch.org/), you have the option to export it in [ONNX](https://onnx.ai/) (Open Neural Network Exchange) format for use in JavaScript web apps that can use the [Onnx Runtime](https://www.onnxruntime.ai/). This option will be explored in a future lesson for a Scikit-learn-trained model.
+  - **Using Lobe.ai or Azure Custom Vision.** If you are using an ML SaaS (Software as a Service) system such as [Lobe.ai](https://lobe.ai/) or [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott) to train a model, this type of software provides ways to export the model for many platforms, including building a bespoke API to be queried in the cloud by your online application.
 
 결국 우리는 Python을 기반으로 한 노트북을 사용해 왔으므로, 이러한 노트북에서 훈련된 모델을 Python 기반 웹 앱에서 읽을 수 있는 형식으로 내보네는 데 필요한 단계를 살펴볼 것이다.
 
@@ -55,7 +55,6 @@ Flask와 Pickle은 모두 파이썬에서 실행되는 도구다.
 
 <br>
 
-
 ## 연습 - 데이터 정리
 
 이번 수업에서는 [NUFORC](https://nuforc.org/) (The National UFO Reporting Center)에서 수집한 80,000건의 UFO 목격담 데이터를 사용한다. 이 데이터에는 다음과 같이 흥미로운 UFO 목격담이 포함되어 있다.
@@ -66,45 +65,44 @@ Flask와 Pickle은 모두 파이썬에서 실행되는 도구다.
 [ufos.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/3-Web-App/1-Web-App/data/ufos.csv) 스프레드시트는 목격이 발생한 `도시`, `주` 및 `국가` , 물체의 `모양`과 `위도` 및 `경도` 와 같은 열이 포함되어 있다.
 
 1. 빈 노트북에서 pandas, matplotlib 및 numpy를 import 하여 ufos 스프레드시트를 가져온다. 샘플 데이터셋을 확인할 수 있다.
-    
-    ```python
-    import pandas as pd
-    import numpy as np
-    
-    ufos = pd.read_csv('./data/ufos.csv')
-    ufos.head()
-    ```
-    
+
+   ```python
+   import pandas as pd
+   import numpy as np
+
+   ufos = pd.read_csv('./data/ufos.csv')
+   ufos.head()
+   ```
 
 2. ufos 데이터를 새 타이틀을 가진 작은 데이터프레임으로 변환한다. `Country` 필드의 고유값을 확인해보자.
-    
-    ```python
-    ufos = pd.DataFrame({'Seconds': ufos['duration (seconds)'], 'Country': ufos['country'],'Latitude': ufos['latitude'],'Longitude': ufos['longitude']})
-    
-    ufos.Country.unique()
-    ```
-    
-2. 이제 결측치가 있는 데이터를 제거하고 1-60초 사이에 발생한 관측만 가져와서 처리할 필요가 있다.
-    
-    ```python
-    ufos.dropna(inplace=True)
-    
-    ufos = ufos[(ufos['Seconds'] >= 1) & (ufos['Seconds'] <= 60)]
-    
-    ufos.info()
-    ```
-    
-3. 사이킷런의 `LabelEncoder` 라이브러리를 가져와 국가에 대한 텍스트 값을 숫자로 변환해보자.
-    - `LabelEncoder`는 데이터를 알파벳순으로 인코딩해준다.
-    
-    ```python
-    from sklearn.preprocessing import LabelEncoder
-    
-    ufos['Country'] = LabelEncoder().fit_transform(ufos['Country'])
-    
-    ufos.head()
-    ```
-    
+
+   ```python
+   ufos = pd.DataFrame({'Seconds': ufos['duration (seconds)'], 'Country': ufos['country'],'Latitude': ufos['latitude'],'Longitude': ufos['longitude']})
+
+   ufos.Country.unique()
+   ```
+
+3. 이제 결측치가 있는 데이터를 제거하고 1-60초 사이에 발생한 관측만 가져와서 처리할 필요가 있다.
+
+   ```python
+   ufos.dropna(inplace=True)
+
+   ufos = ufos[(ufos['Seconds'] >= 1) & (ufos['Seconds'] <= 60)]
+
+   ufos.info()
+   ```
+
+4. 사이킷런의 `LabelEncoder` 라이브러리를 가져와 국가에 대한 텍스트 값을 숫자로 변환해보자.
+
+   - `LabelEncoder`는 데이터를 알파벳순으로 인코딩해준다.
+
+   ```python
+   from sklearn.preprocessing import LabelEncoder
+
+   ufos['Country'] = LabelEncoder().fit_transform(ufos['Country'])
+
+   ufos.head()
+   ```
 
 데이터의 생김새를 확인할 수 있다.
 
@@ -124,33 +122,31 @@ Flask와 Pickle은 모두 파이썬에서 실행되는 도구다.
 이제 데이터를 훈련셋과 테스트셋으로 나눌 준비가 되었다.
 
 1. X 벡터로 사용할 세 가지 특성을 선택하고, y 벡터는 `Country`가 된다. `Seconds`, `Latitude` 및 `Longitude`를 입력하면 국가 ID를 반환할 수 있도록 해보자.
-    
-    ```python
-    from sklearn.model_selection import train_test_split
-    
-    Selected_features = ['Seconds','Latitude','Longitude']
-    
-    X = ufos[Selected_features]
-    y = ufos['Country']
-    
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
-    ```
-    
+
+   ```python
+   from sklearn.model_selection import train_test_split
+
+   Selected_features = ['Seconds','Latitude','Longitude']
+
+   X = ufos[Selected_features]
+   y = ufos['Country']
+
+   X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+   ```
 
 1. 로지스틱 회귀를 사용해 모델을 훈련시켜보자.
-    
-    ```python
-    from sklearn.metrics import accuracy_score, classification_report
-    from sklearn.linear_model import LogisticRegression
-    model = LogisticRegression()
-    model.fit(X_train, y_train)
-    predictions = model.predict(X_test)
-    
-    print(classification_report(y_test, predictions))
-    print('Predicted labels: ', predictions)
-    print('Accuracy: ', accuracy_score(y_test, predictions))
-    ```
-    
+
+   ```python
+   from sklearn.metrics import accuracy_score, classification_report
+   from sklearn.linear_model import LogisticRegression
+   model = LogisticRegression()
+   model.fit(X_train, y_train)
+   predictions = model.predict(X_test)
+
+   print(classification_report(y_test, predictions))
+   print('Predicted labels: ', predictions)
+   print('Accuracy: ', accuracy_score(y_test, predictions))
+   ```
 
 정확도는 약 95%로 나쁘지 않다. `Country`와 `Latitude`/`Logitude`에 상관관계가 있기 때문이다.
 
@@ -173,7 +169,7 @@ model = pickle.load(open('ufo-model.pkl','rb'))
 print(model.predict([[50,44,-12]]))
 ```
 
-모델은 3을 반환했다. 이는 영국의 국가 코드다. 
+모델은 3을 반환했다. 이는 영국의 국가 코드다.
 
 <br>
 
@@ -216,9 +212,10 @@ pip install -r requirements.txt
 ```
 
 6. 앱을 완성하기 위해 다음 세 파일을 생성하자.
-    - root 디렉터리에 app.py 생성
-    - templates 디렉터리에 index.html 파일 생성
-    - static/css 디렉터리에 styles.css 파일 생성
+
+   - root 디렉터리에 app.py 생성
+   - templates 디렉터리에 index.html 파일 생성
+   - static/css 디렉터리에 styles.css 파일 생성
 
 7. style.css 파일을 작성해보자.
 

@@ -295,3 +295,12 @@ defaults:
       share: true
       related: true
       sitemap: true
+
+# Collections
+collections:
+  machine-learning:
+    output: true
+  til:
+    output: true
+  react:
+    output: true

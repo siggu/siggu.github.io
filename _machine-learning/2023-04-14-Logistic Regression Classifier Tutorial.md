@@ -1,20 +1,24 @@
 ---
 layout: single
-title:  "로지스틱 회귀 분류기 튜토리얼"
+title: "로지스틱 회귀 분류기 튜토리얼"
+category: machine-learning
+tags: ["머신러닝", "로지스틱 회귀 분류기"]
 ---
 
-# __로지스틱 회귀 분류기 튜토리얼__
+# **로지스틱 회귀 분류기 튜토리얼**
 
-캐글에 있는 [Prashant Banerjee](https://www.kaggle.com/prashant111)라는 분이 작성한 로지스틱 회귀 분류기 튜토리얼[Logistic Regression Classifier Tutorial](https://www.kaggle.com/code/prashant111/logistic-regression-classifier-tutorial)을 정리하려고 한다. 
-
-<br>
-
-## __파이썬을 이용한 로지스틱 회귀 분류기 튜토리얼__
-> 이 커널에서는 파이썬과 사이킷런을 사용해 로지스틱 회귀(__Logistic Regression__)를 구현한다. 호주에 내일 비가 올지 예측하는 이진 분류 모델을 로지스틱 회귀 분류기로 구축한다.
+캐글에 있는 [Prashant Banerjee](https://www.kaggle.com/prashant111)라는 분이 작성한 로지스틱 회귀 분류기 튜토리얼[Logistic Regression Classifier Tutorial](https://www.kaggle.com/code/prashant111/logistic-regression-classifier-tutorial)을 정리하려고 한다.
 
 <br>
 
-## __목차__
+## **파이썬을 이용한 로지스틱 회귀 분류기 튜토리얼**
+
+> 이 커널에서는 파이썬과 사이킷런을 사용해 로지스틱 회귀(**Logistic Regression**)를 구현한다. 호주에 내일 비가 올지 예측하는 이진 분류 모델을 로지스틱 회귀 분류기로 구축한다.
+
+<br>
+
+## **목차**
+
 [1. 로지스틱 회귀에 대한 소개](#1-로지스틱-회귀에-대한-소개)
 
 [2. 로지스틱 회귀의 이해](#2-로지스틱-회귀의-이해)
@@ -61,7 +65,7 @@ title:  "로지스틱 회귀 분류기 튜토리얼"
 
 <br>
 
-## __1. 로지스틱 회귀에 대한 소개__
+## **1. 로지스틱 회귀에 대한 소개**
 
 [목차](#목차)
 
@@ -69,8 +73,7 @@ title:  "로지스틱 회귀 분류기 튜토리얼"
 
 <br>
 
-
-## __2. 로지스틱 회귀의 이해__
+## **2. 로지스틱 회귀의 이해**
 
 [목차](#목차)
 
@@ -80,7 +83,8 @@ title:  "로지스틱 회귀 분류기 튜토리얼"
 
 <br>
 
-### __선형 방정식 구현__
+### **선형 방정식 구현**
+
 로지스틱 회귀 알고리즘은 독립 변수 또는 설명 변수와 함께 선형 방정식을 구현하여 반응 값을 예측한다. 예를 들어, 우리는 공부한 시간과 시험 합격 확률의 예를 고려한다. 여기서, 공부한 시간은 설명 변수이고 x1로 나타내며, 시험 합격 확률은 반응 또는 대상 변수이고 z로 나타낸다.
 
 만약 우리가 하나의 설명 변수(x1)와 하나의 반응 변수(z)를 가진다면, 선형 방정식은 다음과 같은 수식으로 나타낼 수 있다.
@@ -97,13 +101,14 @@ z = β0 + β1x1
 z = β0 + β1x1+ β2x2 + ... + βnxn
 ```
 
-여기서  `β0`, `β1`, `β2` 및 `βn`은 모델의 매개변수이다.
+여기서 `β0`, `β1`, `β2` 및 `βn`은 모델의 매개변수이다.
 
 따라서, 예측된 반응 값은 위의 방정식에 의해 결정되며, `z`로 표시된다.
 
 <br>
 
-### __시그모이드 함수__
+### **시그모이드 함수**
+
 z라는 예측된 응답 값은, 0과 1 사이의 확률값으로 변환된다. 예측된 값에서 확률값을 얻기 위해서 시그모이드 함수를 사용한다. 이 시그모이드 함수는 모든 실수 값을 0과 1 사이의 확률 값으로 매핑한다.
 
 머신러닝에서, 시그모이드 함수는 예측 값을 확률 값으로 매핑하는 데 사용된다. 시그모이드 함수는 S 모양의 곡선을 가지며, 이를 시그모이드 곡선이라고도 한다.
@@ -113,11 +118,13 @@ z라는 예측된 응답 값은, 0과 1 사이의 확률값으로 변환된다. 
 그래프로는 다음과 같이 시그모이드 함수를 표현할 수 있다.
 
 ### 시그모이드 함수
+
 ![Sigmoid Function](https://miro.medium.com/max/970/1*Xu7B5y9gp0iL5ooBj7LtWw.png)
 
 <br>
 
-### __결정 경계<font size="2">Decision boundary</font>__
+### **결정 경계<font size="2">Decision boundary</font>**
+
 시그모이드 함수는 0과 1 사이의 확률 값을 반환한다. 이 확률 값은 `"0"` 또는 `"1"`인 이진 클래스로 매핑된다. 이 확률 값을 이진 클래스로 매핑하려면 임계값을 선택해야 한다. 이 임계값을 결정 경계(Decision boundary)라고 한다. 이 임계값 이상에서는 확률 값을 클래스 1로 매핑하고, 이하에서는 클래스 0으로 매핑한다.
 
 수학적으로는 다음과 같이 표현할 수 있다.
@@ -134,12 +141,14 @@ p < 0.5 => class = 0
 
 <br>
 
-### __예측하기__
+### **예측하기**
+
 이제 로지스틱 회귀에서 시그모이드 함수와 결정 경계에 대해 알았으므로, 우리는 이 지식을 활용해 예측 함수를 작성할 수 있다. 로지스틱 회귀의 예측 함수는 관측값이 긍정적인 클래스 1일 확률을 반환한다. 이는 P(class=1)로 나타내며, 확률이 1에 가까워질수록 해당 관측값이 클래스 1에 속한다는 모델에 대한 더 높은 신뢰도를 가진다. 그렇지 않으면 클래스 0에 속한다고 할 수 있다.
 
 <br>
 
-## __3. 로지스틱 회귀의 가정__
+## **3. 로지스틱 회귀의 가정**
+
 [목차](#목차)
 
 로지스틱 회귀 모델은 몇 가지 주요 가정이 필요하다. 이는 다음과 같다.
@@ -156,29 +165,30 @@ p < 0.5 => class = 0
 
 <br>
 
-## __4. 로지스틱 회귀의 유형__
+## **4. 로지스틱 회귀의 유형**
+
 [목차](#목차)
 
 로지스틱 회귀 모델은 대상 변수 범주에 따라 세 가지 그룹으로 분류할 수 있다. 이는 다음과 같다.
 
 1. 이항 로지스틱 회귀
-    이항 로지스틱 회귀에서 대상 변수는 두 가지 가능한 범주를 가지고 있다. 대표적인 범주 예시로는 yes 혹은 no, good 혹은 bad, true 혹은 false, spam 혹은 no spam 그리고 pass 혹은 fail이 있다.
-    
+   이항 로지스틱 회귀에서 대상 변수는 두 가지 가능한 범주를 가지고 있다. 대표적인 범주 예시로는 yes 혹은 no, good 혹은 bad, true 혹은 false, spam 혹은 no spam 그리고 pass 혹은 fail이 있다.
 2. 다항 로지스틱 회귀
-    다항 로지스틱 회귀에서 대상 변수는 특정 순서가 없는 세 개 이상의 범주를 가진다. 따라서 세 개 이상의 명목 범주가 있다. 이에 대한 예시로는 과일의 종류 - 사과, 망고, 오렌지, 바나나 등이 있다.
+   다항 로지스틱 회귀에서 대상 변수는 특정 순서가 없는 세 개 이상의 범주를 가진다. 따라서 세 개 이상의 명목 범주가 있다. 이에 대한 예시로는 과일의 종류 - 사과, 망고, 오렌지, 바나나 등이 있다.
 
 3. 순서형 로지스틱 회귀
-    순서형 로지스틱 회귀에서 대상 변수는 세 개 이상의 순서형 범주를 가진다. 즉, 범주 간에 내재적인 순서가 있다. 예를 들어 학생 성적을 poor, average, good 그리고 excellent로 분류할 수 있다.
+   순서형 로지스틱 회귀에서 대상 변수는 세 개 이상의 순서형 범주를 가진다. 즉, 범주 간에 내재적인 순서가 있다. 예를 들어 학생 성적을 poor, average, good 그리고 excellent로 분류할 수 있다.
 
 <br>
 
-## __5. 필요한 라이브러리 불러오기__
+## **5. 필요한 라이브러리 불러오기**
+
 [목차](#목차)
 
 ```python
 # This Python 3 environment comes with many helpful analytics libraries installed
 # It is defined by the kaggle/python docker image: https://github.com/kaggle/docker-python
-# For example, here's several helpful packages to load in 
+# For example, here's several helpful packages to load in
 
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
@@ -197,7 +207,6 @@ for dirname, _, filenames in os.walk('/kaggle/input'):
 # Any results you write to the current directory are saved as output.
 ```
 
-
     /kaggle/input/weather-dataset-rattle-package/weatherAUS.csv
 
 ```python
@@ -205,18 +214,23 @@ import warnings
 
 warnings.filterwarnings('ignore')
 ```
+
 <br>
 
-## __6. 데이터셋 불러오기__
+## **6. 데이터셋 불러오기**
+
 [목차](#목차)
+
 ```python
 data = '/kaggle/input/weather-dataset-rattle-package/weatherAUS.csv'
 
 df = pd.read_csv(data)
 ```
+
 <br>
 
-## __7. 탐색적 데이터 분석__
+## **7. 탐색적 데이터 분석**
+
 [목차](#목차)
 
 데이터를 분석해보자.
@@ -227,6 +241,7 @@ df = pd.read_csv(data)
 
 df.shape
 ```
+
     (142193, 24)
 
 <br>
@@ -409,7 +424,7 @@ col_names
            'Temp3pm', 'RainToday', 'RainTomorrow'],
           dtype='object')
 
-### __RISK_MM 특성 지우기__
+### **RISK_MM 특성 지우기**
 
 RISK_MM 특성 변수를 데이터 세트에서 삭제해야한다는 데이터 세트 설명이 있으므로 다음과 같이 삭제해야한다.
 
@@ -452,7 +467,8 @@ df.info()
     dtypes: float64(16), object(7)
     memory usage: 25.0+ MB
 
-### __변수 유형__
+### **변수 유형**
+
 이 섹션에서는 데이터 세트를 범주형 변수와 수치형 변수로 분류한다. 데이터 세트에는 범주형 및 수치형 변수가 혼합되어 있다. 범주형 변수는 데이터 유형이 객체이다. 수치형 변수는 데이터 유형이 float64이다.
 
 우선 범주형 변수를 찾아보자.
@@ -468,7 +484,7 @@ print('The categorical variables are :', categorical)
 ```
 
     There are 7 categorical variables
-    
+
     The categorical variables are : ['Date', 'Location', 'WindGustDir', 'WindDir9am', 'WindDir3pm', 'RainToday', 'RainTomorrow']
 
 ```python
@@ -476,6 +492,7 @@ print('The categorical variables are :', categorical)
 
 df[categorical].head()
 ```
+
 <br>
 
 <div>
@@ -547,7 +564,6 @@ df[categorical].head()
 </table>
 </div>
 
-
 <br>
 
 ### 범주형 변수 요약
@@ -562,9 +578,9 @@ df[categorical].head()
 
 <br>
 
-### __범주형 변수 문제 탐색__
+### **범주형 변수 문제 탐색**
 
-먼저, 범주형 변수를 살펴보자. 
+먼저, 범주형 변수를 살펴보자.
 
 <br>
 
@@ -576,7 +592,6 @@ df[categorical].head()
 
 df[categorical].isnull().sum()
 ```
-
 
     Date                0
     Location            0
@@ -596,6 +611,7 @@ cat1 = [var for var in categorical if df[var].isnull().sum()!=0]
 
 print(df[cat1].isnull().sum())
 ```
+
     WindGustDir     10326
     WindDir9am      10566
     WindDir3pm       4228
@@ -609,7 +625,7 @@ print(df[cat1].isnull().sum())
 
 <br>
 
-### __범주형 변수의 빈도수__
+### **범주형 변수의 빈도수**
 
 범주형 변수의 빈도수를 확인해보자.
 
@@ -618,8 +634,8 @@ print(df[cat1].isnull().sum())
 ```python
 # view frequency of categorical variables
 
-for var in categorical: 
-    
+for var in categorical:
+
     print(df[var].value_counts())
 ```
 
@@ -746,8 +762,8 @@ for var in categorical:
 ```python
 # view frequency distribution of categorical variables
 
-for var in categorical: 
-    
+for var in categorical:
+
     print(df[var].value_counts()/np.float(len(df)))
 ```
 
@@ -756,7 +772,7 @@ for var in categorical:
     2014-12-01    0.000337
     2014-06-26    0.000337
     2013-07-19    0.000337
-                    ...   
+                    ...
     2007-12-13    0.000007
     2007-11-04    0.000007
     2007-11-23    0.000007
@@ -873,17 +889,17 @@ for var in categorical:
 
 <br>
 
-### __레이블의 수__
+### **레이블의 수**
+
 카테고리 변수 내 레이블의 수는 기수(`cardinality`)라고한다. 변수 내 레이블의 수가 많으면 높은 기수(`high cardinality`)라고한다. 높은 기수는 머신 러닝 모델에서 일부 심각한 문제를 일으킬 수 있으므로, 높은 기수를 확인해보자.
 
 <br>
-
 
 ```python
 # check for cardinality in categorical variables
 
 for var in categorical:
-    
+
     print(var, ' contains ', len(df[var].unique()), ' labels')
 ```
 
@@ -897,13 +913,14 @@ for var in categorical:
 
 <br>
 
-다음과 같이 전처리가 필요해 보이는 `Date` 변수가 있다. 
+다음과 같이 전처리가 필요해 보이는 `Date` 변수가 있다.
 
 다른 모든 변수는 비교적 적은 수의 변수를 가지고 있다.
 
 <br>
 
-### __Data 변수의 특성 엔지니어링__
+### **Data 변수의 특성 엔지니어링**
+
 ```python
 df['Date'].dtypes
 ```
@@ -920,7 +937,6 @@ df['Date'].dtypes
 df['Date'] = pd.to_datetime(df['Date'])
 ```
 
-
 ```python
 # extract year from date
 
@@ -929,16 +945,12 @@ df['Year'] = df['Date'].dt.year
 df['Year'].head()
 ```
 
-
-
-
     0    2008
     1    2008
     2    2008
     3    2008
     4    2008
     Name: Year, dtype: int64
-
 
 <br>
 
@@ -950,16 +962,12 @@ df['Month'] = df['Date'].dt.month
 df['Month'].head()
 ```
 
-
-
-
     0    12
     1    12
     2    12
     3    12
     4    12
     Name: Month, dtype: int64
-
 
 <br>
 
@@ -971,9 +979,6 @@ df['Day'] = df['Date'].dt.day
 df['Day'].head()
 ```
 
-
-
-
     0    1
     1    2
     2    3
@@ -981,9 +986,7 @@ df['Day'].head()
     4    5
     Name: Day, dtype: int64
 
-
 <br>
-
 
 ```python
 # again view the summary of dataset
@@ -1035,15 +1038,11 @@ df.info()
 df.drop('Date', axis=1, inplace = True)
 ```
 
-
 ```python
 # preview the dataset again
 
 df.head()
 ```
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -1205,9 +1204,9 @@ df.head()
 
 <br>
 
-### __범주형 변수 탐색__
-이제 하나씩 범주형 변수를 하나하나 탐색해보자.
+### **범주형 변수 탐색**
 
+이제 하나씩 범주형 변수를 하나하나 탐색해보자.
 
 ```python
 # find categorical variables
@@ -1220,22 +1219,18 @@ print('The categorical variables are :', categorical)
 ```
 
     There are 6 categorical variables
-    
+
     The categorical variables are : ['Location', 'WindGustDir', 'WindDir9am', 'WindDir3pm', 'RainToday', 'RainTomorrow']
 
 <br>
 
 6개의 범주형 변수들이 있는 것을 볼 수 있다. `Data` 변수는 사라졌다. 제일 먼저, 범주형 변수들의 결측치를 살펴보자.
 
-
 ```python
-# check for missing values in categorical variables 
+# check for missing values in categorical variables
 
 df[categorical].isnull().sum()
 ```
-
-
-
 
     Location            0
     WindGustDir      9330
@@ -1245,13 +1240,11 @@ df[categorical].isnull().sum()
     RainTomorrow        0
     dtype: int64
 
-
 <br>
 
 `WindGustDir`, `WindDir9am`, `WindDir3pm`, `RainToday`, 이 4개가 결측치를 포함하고 있는 것을 볼 수 있다. 모든 변수들을 하나하나 살펴보자.
 
 ### `Location` 변수 탐색
-
 
 ```python
 # print number of labels in Location variable
@@ -1260,7 +1253,7 @@ print('Location contains', len(df.Location.unique()), 'labels')
 ```
 
     Location contains 49 labels
-    
+
 <br>
 
 ```python
@@ -1268,9 +1261,6 @@ print('Location contains', len(df.Location.unique()), 'labels')
 
 df.Location.unique()
 ```
-
-
-
 
     array(['Albury', 'BadgerysCreek', 'Cobar', 'CoffsHarbour', 'Moree',
            'Newcastle', 'NorahHead', 'NorfolkIsland', 'Penrith', 'Richmond',
@@ -1283,7 +1273,6 @@ df.Location.unique()
            'Perth', 'SalmonGums', 'Walpole', 'Hobart', 'Launceston',
            'AliceSprings', 'Darwin', 'Katherine', 'Uluru'], dtype=object)
 
-
 <br>
 
 ```python
@@ -1291,9 +1280,6 @@ df.Location.unique()
 
 df.Location.value_counts()
 ```
-
-
-
 
     Canberra            3418
     Sydney              3337
@@ -1348,17 +1334,13 @@ df.Location.value_counts()
 
 <br>
 
-
 ```python
 # let's do One Hot Encoding of Location variable
-# get k-1 dummy variables after One Hot Encoding 
+# get k-1 dummy variables after One Hot Encoding
 # preview the dataset with head() method
 
 pd.get_dummies(df.Location, drop_first=True).head()
 ```
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -1518,7 +1500,6 @@ pd.get_dummies(df.Location, drop_first=True).head()
 
 ### `WindGustDir` 변수 탐색
 
-
 ```python
 # print number of labels in WindGustDir variable
 
@@ -1526,7 +1507,7 @@ print('WindGustDir contains', len(df['WindGustDir'].unique()), 'labels')
 ```
 
     WindGustDir contains 17 labels
-    
+
 <br>
 
 ```python
@@ -1535,12 +1516,8 @@ print('WindGustDir contains', len(df['WindGustDir'].unique()), 'labels')
 df['WindGustDir'].unique()
 ```
 
-
-
-
     array(['W', 'WNW', 'WSW', 'NE', 'NNW', 'N', 'NNE', 'SW', 'ENE', 'SSE',
            'S', 'NW', 'SE', 'ESE', nan, 'E', 'SSW'], dtype=object)
-
 
 <br>
 
@@ -1549,9 +1526,6 @@ df['WindGustDir'].unique()
 
 df.WindGustDir.value_counts()
 ```
-
-
-
 
     W      9780
     SE     9309
@@ -1573,18 +1547,14 @@ df.WindGustDir.value_counts()
 
 <br>
 
-
 ```python
 # let's do One Hot Encoding of WindGustDir variable
-# get k-1 dummy variables after One Hot Encoding 
+# get k-1 dummy variables after One Hot Encoding
 # also add an additional dummy variable to indicate there was missing data
 # preview the dataset with head() method
 
 pd.get_dummies(df.WindGustDir, drop_first=True, dummy_na=True).head()
 ```
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -1711,16 +1681,12 @@ pd.get_dummies(df.WindGustDir, drop_first=True, dummy_na=True).head()
 
 <br>
 
-
 ```python
 # sum the number of 1s per boolean variable over the rows of the dataset
 # it will tell us how many observations we have for each category
 
 pd.get_dummies(df.WindGustDir, drop_first=True, dummy_na=True).sum(axis=0)
 ```
-
-
-
 
     ENE    7992
     ESE    7305
@@ -1740,13 +1706,11 @@ pd.get_dummies(df.WindGustDir, drop_first=True, dummy_na=True).sum(axis=0)
     NaN    9330
     dtype: int64
 
-
 <br>
 
 `WindGustDir` 변수에 9330개의 결측치가 있는 것을 볼 수 있다.
 
 ### `WindDir9am` 변수 탐색
-
 
 ```python
 # print number of labels in WindDir9am variable
@@ -1764,23 +1728,16 @@ print('WindDir9am contains', len(df['WindDir9am'].unique()), 'labels')
 df['WindDir9am'].unique()
 ```
 
-
-
-
     array(['W', 'NNW', 'SE', 'ENE', 'SW', 'SSE', 'S', 'NE', nan, 'SSW', 'N',
            'WSW', 'ESE', 'E', 'NW', 'WNW', 'NNE'], dtype=object)
 
 <br>
-
 
 ```python
 # check frequency distribution of values in WindDir9am variable
 
 df['WindDir9am'].value_counts()
 ```
-
-
-
 
     N      11393
     SE      9162
@@ -1800,21 +1757,16 @@ df['WindDir9am'].value_counts()
     WSW     6843
     Name: WindDir9am, dtype: int64
 
-
 <br>
-
 
 ```python
 # let's do One Hot Encoding of WindDir9am variable
-# get k-1 dummy variables after One Hot Encoding 
+# get k-1 dummy variables after One Hot Encoding
 # also add an additional dummy variable to indicate there was missing data
 # preview the dataset with head() method
 
 pd.get_dummies(df.WindDir9am, drop_first=True, dummy_na=True).head()
 ```
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -1939,9 +1891,7 @@ pd.get_dummies(df.WindDir9am, drop_first=True, dummy_na=True).head()
 </table>
 </div>
 
-
 <br>
-
 
 ```python
 # sum the number of 1s per boolean variable over the rows of the dataset
@@ -1949,9 +1899,6 @@ pd.get_dummies(df.WindDir9am, drop_first=True, dummy_na=True).head()
 
 pd.get_dummies(df.WindDir9am, drop_first=True, dummy_na=True).sum(axis=0)
 ```
-
-
-
 
     ENE     7735
     ESE     7558
@@ -1979,7 +1926,6 @@ pd.get_dummies(df.WindDir9am, drop_first=True, dummy_na=True).sum(axis=0)
 
 ### `WinDir3pm` 변수 탐색
 
-
 ```python
 # print number of labels in WindDir3pm variable
 
@@ -1988,10 +1934,7 @@ print('WindDir3pm contains', len(df['WindDir3pm'].unique()), 'labels')
 
     WindDir3pm contains 17 labels
 
-
 <br>
-
-
 
 ```python
 # check labels in WindDir3pm variable
@@ -1999,23 +1942,16 @@ print('WindDir3pm contains', len(df['WindDir3pm'].unique()), 'labels')
 df['WindDir3pm'].unique()
 ```
 
-
-
-
     array(['WNW', 'WSW', 'E', 'NW', 'W', 'SSE', 'ESE', 'ENE', 'NNW', 'SSW',
            'SW', 'SE', 'N', 'S', 'NNE', nan, 'NE'], dtype=object)
 
 <br>
-
 
 ```python
 # check frequency distribution of values in WindDir3pm variable
 
 df['WindDir3pm'].value_counts()
 ```
-
-
-
 
     SE     10663
     W       9911
@@ -2037,18 +1973,14 @@ df['WindDir3pm'].value_counts()
 
 <br>
 
-
 ```python
 # let's do One Hot Encoding of WindDir3pm variable
-# get k-1 dummy variables after One Hot Encoding 
+# get k-1 dummy variables after One Hot Encoding
 # also add an additional dummy variable to indicate there was missing data
 # preview the dataset with head() method
 
 pd.get_dummies(df.WindDir3pm, drop_first=True, dummy_na=True).head()
 ```
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -2175,16 +2107,12 @@ pd.get_dummies(df.WindDir3pm, drop_first=True, dummy_na=True).head()
 
 <br>
 
-
 ```python
 # sum the number of 1s per boolean variable over the rows of the dataset
 # it will tell us how many observations we have for each category
 
 pd.get_dummies(df.WindDir3pm, drop_first=True, dummy_na=True).sum(axis=0)
 ```
-
-
-
 
     ENE     7724
     ESE     8382
@@ -2204,7 +2132,6 @@ pd.get_dummies(df.WindDir3pm, drop_first=True, dummy_na=True).sum(axis=0)
     NaN     3778
     dtype: int64
 
-
 <br>
 
 `WindDir3pm` 변수에는 3778개의 결측치가 있는 것을 볼 수 있다.
@@ -2212,7 +2139,6 @@ pd.get_dummies(df.WindDir3pm, drop_first=True, dummy_na=True).sum(axis=0)
 <br>
 
 ### `RainToday` 변수 탐색
-
 
 ```python
 # print number of labels in RainToday variable
@@ -2224,22 +2150,15 @@ print('RainToday contains', len(df['RainToday'].unique()), 'labels')
 
 <br>
 
-
-
 ```python
 # check labels in WindGustDir variable
 
 df['RainToday'].unique()
 ```
 
-
-
-
     array(['No', 'Yes', nan], dtype=object)
 
 <br>
-
-
 
 ```python
 # check frequency distribution of values in WindGustDir variable
@@ -2247,29 +2166,20 @@ df['RainToday'].unique()
 df.RainToday.value_counts()
 ```
 
-
-
-
     No     109332
     Yes     31455
     Name: RainToday, dtype: int64
 
 <br>
 
-
-
-
 ```python
 # let's do One Hot Encoding of RainToday variable
-# get k-1 dummy variables after One Hot Encoding 
+# get k-1 dummy variables after One Hot Encoding
 # also add an additional dummy variable to indicate there was missing data
 # preview the dataset with head() method
 
 pd.get_dummies(df.RainToday, drop_first=True, dummy_na=True).head()
 ```
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -2312,7 +2222,6 @@ pd.get_dummies(df.RainToday, drop_first=True, dummy_na=True).head()
 
 <br>
 
-
 ```python
 # sum the number of 1s per boolean variable over the rows of the dataset
 # it will tell us how many observations we have for each category
@@ -2320,13 +2229,9 @@ pd.get_dummies(df.RainToday, drop_first=True, dummy_na=True).head()
 pd.get_dummies(df.RainToday, drop_first=True, dummy_na=True).sum(axis=0)
 ```
 
-
-
-
     Yes    31455
     NaN     1406
     dtype: int64
-    
 
 <br>
 
@@ -2335,8 +2240,6 @@ pd.get_dummies(df.RainToday, drop_first=True, dummy_na=True).sum(axis=0)
 <br>
 
 ### 수치형 변수 탐색
-
-
 
 ```python
 # find numerical variables
@@ -2349,22 +2252,16 @@ print('The numerical variables are :', numerical)
 ```
 
     There are 19 numerical variables
-    
+
     The numerical variables are : ['MinTemp', 'MaxTemp', 'Rainfall', 'Evaporation', 'Sunshine', 'WindGustSpeed', 'WindSpeed9am', 'WindSpeed3pm', 'Humidity9am', 'Humidity3pm', 'Pressure9am', 'Pressure3pm', 'Cloud9am', 'Cloud3pm', 'Temp9am', 'Temp3pm', 'Year', 'Month', 'Day']
 
-    
 <br>
-
-
 
 ```python
 # view the numerical variables
 
 df[numerical].head()
 ```
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -2511,18 +2408,14 @@ df[numerical].head()
 
 ### 수치형 변수들 요약
 
-
-
-- 16개의 수치형 변수들이 있다. 
-
+- 16개의 수치형 변수들이 있다.
 
 - 이들은 `MinTemp`, `MaxTemp`, `Rainfall`, `Evaporation`, `Sunshine`, `WindGustSpeed`, `WindSpeed9am`, `WindSpeed3pm`, `Humidity9am`, `Humidity3pm`, `Pressure9am`, `Pressure3pm`, `Cloud9am`, `Cloud3pm`, `Temp9am`, `Temp3pm` 이다.
-    
 - 모든 수치형 변수들은 연속형 변수이다.
 
 <br>
 
-### __수치형 변수의 문제 탐색__
+### **수치형 변수의 문제 탐색**
 
 수치형 변수들을 탐색할 것이다.
 
@@ -2530,15 +2423,11 @@ df[numerical].head()
 
 ### 수치형 특성의 결측치
 
-
 ```python
 # check missing values in numerical variables
 
 df[numerical].isnull().sum()
 ```
-
-
-
 
     MinTemp            637
     MaxTemp            322
@@ -2565,7 +2454,6 @@ df[numerical].isnull().sum()
 
 ### 수치형 변수의 이상치
 
-
 ```python
 # view summary statistics in numerical variables
 
@@ -2573,43 +2461,43 @@ print(round(df[numerical].describe()),2)
 ```
 
             MinTemp   MaxTemp  Rainfall  Evaporation  Sunshine  WindGustSpeed  \
-    count  141556.0  141871.0  140787.0      81350.0   74377.0       132923.0   
-    mean       12.0      23.0       2.0          5.0       8.0           40.0   
-    std         6.0       7.0       8.0          4.0       4.0           14.0   
-    min        -8.0      -5.0       0.0          0.0       0.0            6.0   
-    25%         8.0      18.0       0.0          3.0       5.0           31.0   
-    50%        12.0      23.0       0.0          5.0       8.0           39.0   
-    75%        17.0      28.0       1.0          7.0      11.0           48.0   
-    max        34.0      48.0     371.0        145.0      14.0          135.0   
-    
+    count  141556.0  141871.0  140787.0      81350.0   74377.0       132923.0
+    mean       12.0      23.0       2.0          5.0       8.0           40.0
+    std         6.0       7.0       8.0          4.0       4.0           14.0
+    min        -8.0      -5.0       0.0          0.0       0.0            6.0
+    25%         8.0      18.0       0.0          3.0       5.0           31.0
+    50%        12.0      23.0       0.0          5.0       8.0           39.0
+    75%        17.0      28.0       1.0          7.0      11.0           48.0
+    max        34.0      48.0     371.0        145.0      14.0          135.0
+
            WindSpeed9am  WindSpeed3pm  Humidity9am  Humidity3pm  Pressure9am  \
-    count      140845.0      139563.0     140419.0     138583.0     128179.0   
-    mean           14.0          19.0         69.0         51.0       1018.0   
-    std             9.0           9.0         19.0         21.0          7.0   
-    min             0.0           0.0          0.0          0.0        980.0   
-    25%             7.0          13.0         57.0         37.0       1013.0   
-    50%            13.0          19.0         70.0         52.0       1018.0   
-    75%            19.0          24.0         83.0         66.0       1022.0   
-    max           130.0          87.0        100.0        100.0       1041.0   
-    
+    count      140845.0      139563.0     140419.0     138583.0     128179.0
+    mean           14.0          19.0         69.0         51.0       1018.0
+    std             9.0           9.0         19.0         21.0          7.0
+    min             0.0           0.0          0.0          0.0        980.0
+    25%             7.0          13.0         57.0         37.0       1013.0
+    50%            13.0          19.0         70.0         52.0       1018.0
+    75%            19.0          24.0         83.0         66.0       1022.0
+    max           130.0          87.0        100.0        100.0       1041.0
+
            Pressure3pm  Cloud9am  Cloud3pm   Temp9am   Temp3pm      Year  \
-    count     128212.0   88536.0   85099.0  141289.0  139467.0  142193.0   
-    mean        1015.0       4.0       5.0      17.0      22.0    2013.0   
-    std            7.0       3.0       3.0       6.0       7.0       3.0   
-    min          977.0       0.0       0.0      -7.0      -5.0    2007.0   
-    25%         1010.0       1.0       2.0      12.0      17.0    2011.0   
-    50%         1015.0       5.0       5.0      17.0      21.0    2013.0   
-    75%         1020.0       7.0       7.0      22.0      26.0    2015.0   
-    max         1040.0       9.0       9.0      40.0      47.0    2017.0   
-    
-              Month       Day  
-    count  142193.0  142193.0  
-    mean        6.0      16.0  
-    std         3.0       9.0  
-    min         1.0       1.0  
-    25%         3.0       8.0  
-    50%         6.0      16.0  
-    75%         9.0      23.0  
+    count     128212.0   88536.0   85099.0  141289.0  139467.0  142193.0
+    mean        1015.0       4.0       5.0      17.0      22.0    2013.0
+    std            7.0       3.0       3.0       6.0       7.0       3.0
+    min          977.0       0.0       0.0      -7.0      -5.0    2007.0
+    25%         1010.0       1.0       2.0      12.0      17.0    2011.0
+    50%         1015.0       5.0       5.0      17.0      21.0    2013.0
+    75%         1020.0       7.0       7.0      22.0      26.0    2015.0
+    max         1040.0       9.0       9.0      40.0      47.0    2017.0
+
+              Month       Day
+    count  142193.0  142193.0
+    mean        6.0      16.0
+    std         3.0       9.0
+    min         1.0       1.0
+    25%         3.0       8.0
+    50%         6.0      16.0
+    75%         9.0      23.0
     max        12.0      31.0   2
 
 <br>
@@ -2617,8 +2505,6 @@ print(round(df[numerical].describe()),2)
 `Rainfall`, `Evaporation`, `WindSpeed9am`, `WindSpeed3pm`이 이상치를 가지고 있는 것으로 보인다.
 
 위 변수들의 이상치를 시각화 해보자.
-
-
 
 ```python
 # draw boxplots to visualize outliers
@@ -2650,13 +2536,7 @@ fig.set_title('')
 fig.set_ylabel('WindSpeed3pm')
 ```
 
-
-
-
     Text(0, 0.5, 'WindSpeed3pm')
-
-   
-
 
 ![image](https://user-images.githubusercontent.com/106001755/231873176-79486bf8-2a57-40a2-849c-8bbf7f21abe1.png)
 
@@ -2666,7 +2546,7 @@ fig.set_ylabel('WindSpeed3pm')
 
 <br>
 
-### __변수의 분산 확인__
+### **변수의 분산 확인**
 
 이제 히스토그램을 그려 분포를 확인하여 변수들이 정규분포를 따르는지, 혹은 치우친 분포를 보이는지를 확인해보자. 만약 변수가 정규분포를 따른다면, 극단치 분석(`Extreme Value Analysis`)을 수행할 것이고, 변수가 치우친 분포를 보인다면 IQR (Interquantile range)을 수행할 것이다.
 
@@ -2703,18 +2583,14 @@ fig.set_ylabel('RainTomorrow')
 ```
 
     Text(0, 0.5, 'RainTomorrow')
-    
+
 ![image](https://user-images.githubusercontent.com/106001755/231873288-b47d7036-8532-44b8-8b4b-436f30d4e527.png)
-
-
 
 <br>
 
 4개 모두 치우친 것을 볼 수 있다. 따라서, IQR을 수행할 것이다.
 
 <br>
-
-
 
 ```python
 # find outliers for Rainfall variable
@@ -2727,7 +2603,6 @@ print('Rainfall outliers are values < {lowerboundary} or > {upperboundary}'.form
 ```
 
     Rainfall outliers are values < -2.4000000000000004 or > 3.2
-
 
 `Rainfall`에 대해, 최소값과 최대값이 0.0과 371.0이다. 따라서 이상치는 3.2보다 큰 값들이다.
 
@@ -2748,7 +2623,6 @@ print('Evaporation outliers are values < {lowerboundary} or > {upperboundary}'.f
 `Evaporation`에 대해, 최소값과 최대값이 0.0과 145.0이다. 따라서 이상치는 21.8보다 큰 값들이다.
 
 <br>
-
 
 ```python
 # find outliers for WindSpeed9am variable
@@ -2778,13 +2652,13 @@ print('WindSpeed3pm outliers are values < {lowerboundary} or > {upperboundary}'.
 
     WindSpeed3pm outliers are values < -20.0 or > 57.0
 
-
 `WindSpeed3pm`에 대해, 최소값과 최대값이 0.0과 87.0이다. 따라서 이상치는 570보다 큰 값들이다.
 
 <br>
 <br>
 
-## __8. 특성 벡터와 대상 변수 선언__
+## **8. 특성 벡터와 대상 변수 선언**
+
 [목차](#목차)
 
 ```python
@@ -2795,10 +2669,9 @@ y = df['RainTomorrow']
 
 <br>
 
-## __9. 데이터를 학습 및 테스트 세트로 분리__
+## **9. 데이터를 학습 및 테스트 세트로 분리**
+
 [목차](#목차)
-
-
 
 ```python
 # split X and y into training and testing sets
@@ -2809,38 +2682,30 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, rando
 
 ```
 
-
 ```python
 # check the shape of X_train and X_test
 
 X_train.shape, X_test.shape
 ```
 
-
-
-
     ((113754, 24), (28439, 24))
 
 <br>
 <br>
 
-## __10. 특성 공학__
+## **10. 특성 공학**
+
 [목차](#목차)
 
 **특성 공학**은 원시 데이터를 유용한 기능으로 변환하여 모델을 이해하고 예측 능력을 향상시키는 프로세스이다. 다른 유형의 변수에 대해 특성 공학을 수행해보자.
 
 먼저, 범주형 변수와 수치형 변수를 다시 나눠서 보여줄 것이다.
 
-
-
 ```python
 # check data types in X_train
 
 X_train.dtypes
 ```
-
-
-
 
     Location          object
     MinTemp          float64
@@ -2870,7 +2735,6 @@ X_train.dtypes
 
 <br>
 
-
 ```python
 # display categorical variables
 
@@ -2879,14 +2743,9 @@ categorical = [col for col in X_train.columns if X_train[col].dtypes == 'O']
 categorical
 ```
 
-
-
-
     ['Location', 'WindGustDir', 'WindDir9am', 'WindDir3pm', 'RainToday']
 
 <br>
-
-
 
 ```python
 # display numerical variables
@@ -2895,9 +2754,6 @@ numerical = [col for col in X_train.columns if X_train[col].dtypes != 'O']
 
 numerical
 ```
-
-
-
 
     ['MinTemp',
      'MaxTemp',
@@ -2919,21 +2775,15 @@ numerical
      'Month',
      'Day']
 
-
 <br>
 
 ### 수치형 변수들의 결측치 공학
-
-
 
 ```python
 # check missing values in numerical variables in X_train
 
 X_train[numerical].isnull().sum()
 ```
-
-
-
 
     MinTemp            495
     MaxTemp            264
@@ -2958,16 +2808,11 @@ X_train[numerical].isnull().sum()
 
 <br>
 
-
-
 ```python
 # check missing values in numerical variables in X_test
 
 X_test[numerical].isnull().sum()
 ```
-
-
-
 
     MinTemp            142
     MaxTemp             58
@@ -2991,8 +2836,6 @@ X_test[numerical].isnull().sum()
     dtype: int64
 
 <br>
-
-
 
 ```python
 # print percentage of missing values in the numerical variables in training set
@@ -3021,12 +2864,11 @@ for col in numerical:
 
 <br>
 
-### __추정__
+### **추정**
 
 데이터가 완전히 무작위로 누락되었다고 가정하고 (MCAR), 결측값을 보완하는 데 두 가지 방법을 사용할 수 있다. 하나는 평균 또는 중앙값 보완이고, 다른 하나는 무작위 샘플 보완이다. 데이터 세트에 이상치가 있을 때 중앙값 보완을 사용해야 한다. 따라서, 이번 분석에서는 중앙값 보완을 사용해보자.
 
 결측값 보완은 적절한 통계적 측정값(중앙값)으로 이루어진다. 보완은 학습 데이터 세트에서 이루어져야 하며, 그 후에 테스트 데이터 세트로 전파되어야 한다. 즉, 학습 및 테스트 데이터 세트에서 결측값을 채우기 위해 사용되는 통계 측정값은 학습 세트에서만 추출되어야 한다.
-
 
 ```python
 # impute missing values in X_train and X_test with respective column median in X_train
@@ -3034,8 +2876,8 @@ for col in numerical:
 for df1 in [X_train, X_test]:
     for col in numerical:
         col_median=X_train[col].median()
-        df1[col].fillna(col_median, inplace=True)           
-      
+        df1[col].fillna(col_median, inplace=True)
+
 ```
 
 <br>
@@ -3045,9 +2887,6 @@ for df1 in [X_train, X_test]:
 
 X_train[numerical].isnull().sum()
 ```
-
-
-
 
     MinTemp          0
     MaxTemp          0
@@ -3072,15 +2911,11 @@ X_train[numerical].isnull().sum()
 
 <br>
 
-
 ```python
 # check missing values in numerical variables in X_test
 
 X_test[numerical].isnull().sum()
 ```
-
-
-
 
     MinTemp          0
     MaxTemp          0
@@ -3109,8 +2944,7 @@ X_test[numerical].isnull().sum()
 
 <br>
 
-### __범주형 변수의 결측치 공학__
-
+### **범주형 변수의 결측치 공학**
 
 ```python
 # print percentage of missing values in the categorical variables in training set
@@ -3118,16 +2952,12 @@ X_test[numerical].isnull().sum()
 X_train[categorical].isnull().mean()
 ```
 
-
-
-
     Location       0.000000
     WindGustDir    0.065114
     WindDir9am     0.070134
     WindDir3pm     0.026443
     RainToday      0.010013
     dtype: float64
-
 
 <br>
 
@@ -3143,7 +2973,7 @@ for col in categorical:
     WindDir9am 0.07013379749283542
     WindDir3pm 0.026443026179299188
     RainToday 0.01001283471350458
-    
+
 <br>
 
 ```python
@@ -3155,6 +2985,7 @@ for df2 in [X_train, X_test]:
     df2['WindDir3pm'].fillna(X_train['WindDir3pm'].mode()[0], inplace=True)
     df2['RainToday'].fillna(X_train['RainToday'].mode()[0], inplace=True)
 ```
+
 <br>
 
 ```python
@@ -3163,16 +2994,12 @@ for df2 in [X_train, X_test]:
 X_train[categorical].isnull().sum()
 ```
 
-
-
-
     Location       0
     WindGustDir    0
     WindDir9am     0
     WindDir3pm     0
     RainToday      0
     dtype: int64
-
 
 <br>
 
@@ -3181,9 +3008,6 @@ X_train[categorical].isnull().sum()
 
 X_test[categorical].isnull().sum()
 ```
-
-
-
 
     Location       0
     WindGustDir    0
@@ -3196,15 +3020,11 @@ X_test[categorical].isnull().sum()
 
 마지막으로, `X_train`과 `X_test`의 결측치를 확인해보자.
 
-
 ```python
 # check missing values in X_train
 
 X_train.isnull().sum()
 ```
-
-
-
 
     Location         0
     MinTemp          0
@@ -3232,7 +3052,6 @@ X_train.isnull().sum()
     Day              0
     dtype: int64
 
-
 <br>
 
 ```python
@@ -3240,9 +3059,6 @@ X_train.isnull().sum()
 
 X_test.isnull().sum()
 ```
-
-
-
 
     Location         0
     MinTemp          0
@@ -3276,11 +3092,9 @@ X_test.isnull().sum()
 
 <br>
 
-### __수치형 변수의 이상치 공학__
+### **수치형 변수의 이상치 공학**
 
 `Rainfall`, `Evaporation`, `WindSpeed9am`, `WindSpeed3pm`에서 이상치가 있는 것을 봤었다. 위의 변수에서 최대값을 상한선으로 설정하고 이상치를 제거하기 위해 top-coding 접근 방식을 사용해보자.
-
-
 
 ```python
 def max_value(df3, variable, top):
@@ -3299,23 +3113,15 @@ for df3 in [X_train, X_test]:
 X_train.Rainfall.max(), X_test.Rainfall.max()
 ```
 
-
-
-
     (3.2, 3.2)
 
 <br>
-
 
 ```python
 X_train.Evaporation.max(), X_test.Evaporation.max()
 ```
 
-
-
-
     (21.8, 21.8)
-
 
 <br>
 
@@ -3323,32 +3129,21 @@ X_train.Evaporation.max(), X_test.Evaporation.max()
 X_train.WindSpeed9am.max(), X_test.WindSpeed9am.max()
 ```
 
-
-
-
     (55.0, 55.0)
 
 <br>
-
 
 ```python
 X_train.WindSpeed3pm.max(), X_test.WindSpeed3pm.max()
 ```
 
-
-
-
     (57.0, 57.0)
 
 <br>
 
-
 ```python
 X_train[numerical].describe()
 ```
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -3561,27 +3356,19 @@ X_train[numerical].describe()
 
 `Rainfall`, `Evaporation`, `WindSpeed9am` `WindSpeed3pm` 에서 이상치가 사라진 것을 볼 수 있다.
 
-### __범주형 변수 인코딩__
-
+### **범주형 변수 인코딩**
 
 ```python
 categorical
 ```
 
-
-
-
     ['Location', 'WindGustDir', 'WindDir9am', 'WindDir3pm', 'RainToday']
-
 
 <br>
 
 ```python
 X_train[categorical].head()
 ```
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -3640,7 +3427,6 @@ X_train[categorical].head()
 </table>
 </div>
 
-
 <br>
 
 ```python
@@ -3660,9 +3446,6 @@ X_test = encoder.transform(X_test)
 ```python
 X_train.head()
 ```
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -3824,10 +3607,9 @@ X_train.head()
 
 `X_train` 훈련세트를 생성해보자.
 
-
 ```python
 X_train = pd.concat([X_train[numerical], X_train[['RainToday_0', 'RainToday_1']],
-                     pd.get_dummies(X_train.Location), 
+                     pd.get_dummies(X_train.Location),
                      pd.get_dummies(X_train.WindGustDir),
                      pd.get_dummies(X_train.WindDir9am),
                      pd.get_dummies(X_train.WindDir3pm)], axis=1)
@@ -3835,13 +3617,9 @@ X_train = pd.concat([X_train[numerical], X_train[['RainToday_0', 'RainToday_1']]
 
 <br>
 
-
 ```python
 X_train.head()
 ```
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -4001,23 +3779,17 @@ X_train.head()
 
 유사하게, `X_test` 훈련세트도 만들어보자.
 
-
-
 ```python
 X_test = pd.concat([X_test[numerical], X_test[['RainToday_0', 'RainToday_1']],
-                     pd.get_dummies(X_test.Location), 
+                     pd.get_dummies(X_test.Location),
                      pd.get_dummies(X_test.WindGustDir),
                      pd.get_dummies(X_test.WindDir9am),
                      pd.get_dummies(X_test.WindDir3pm)], axis=1)
 ```
 
-
 ```python
 X_test.head()
 ```
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -4177,20 +3949,15 @@ X_test.head()
 
 이제 모델 구축을 위한 학습 및 테스트 세트가 준비되었다. 그러나 그 전에, 모든 특성 변수를 동일한 척도로 매핑해야 한다. 이를 `특성 스케일링`<font size="2">feature scaling</font>이라고 합니다. 다음과 같이 수행해보자.
 
-
-
 <br>
 
-## __11. 특성 스케일링__
-[목차](#목차)
+## **11. 특성 스케일링**
 
+[목차](#목차)
 
 ```python
 X_train.describe()
 ```
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -4420,12 +4187,9 @@ X_train.describe()
 
 <br>
 
-
-
 ```python
 cols = X_train.columns
 ```
-
 
 ```python
 from sklearn.preprocessing import MinMaxScaler
@@ -4438,22 +4202,17 @@ X_test = scaler.transform(X_test)
 
 ```
 
-
 ```python
 X_train = pd.DataFrame(X_train, columns=[cols])
 ```
-
 
 ```python
 X_test = pd.DataFrame(X_test, columns=[cols])
 ```
 
-
 ```python
 X_train.describe()
 ```
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -4683,14 +4442,13 @@ X_train.describe()
 
 <br>
 
-이제 로지스틱 회귀 분류기에 들어갈 `X_train` 데이터세트가 준비되었다. 
+이제 로지스틱 회귀 분류기에 들어갈 `X_train` 데이터세트가 준비되었다.
 
 <br>
 
-## __12. 모델 학습__
+## **12. 모델 학습**
+
 [목차](#목차)
-
-
 
 ```python
 # train a logistic regression model on the training set
@@ -4706,26 +4464,17 @@ logreg.fit(X_train, y_train)
 
 ```
 
-
-
-
     LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
                        intercept_scaling=1, l1_ratio=None, max_iter=100,
                        multi_class='warn', n_jobs=None, penalty='l2',
                        random_state=0, solver='liblinear', tol=0.0001, verbose=0,
                        warm_start=False)
 
-
-
 <br>
 
+## **13. 결과 예측**
 
-
-
-
-## __13. 결과 예측__
 [목차](#목차)
-
 
 ```python
 y_pred_test = logreg.predict(X_test)
@@ -4733,22 +4482,17 @@ y_pred_test = logreg.predict(X_test)
 y_pred_test
 ```
 
-
-
-
     array(['No', 'No', 'No', ..., 'No', 'No', 'Yes'], dtype=object)
 
 <br>
 
-### __predict_proba 메서드__
+### **predict_proba 메서드**
 
 **predict_proba** 메서드는 대상 변수(0과 1)에 대한 확률을 배열 형태로 제공합니다.
 
 `0은 비가 오지 않을 확률`을 나타내며, `1은 비가 올 확률`을 나타낸다.
 
-
 <br>
-
 
 ```python
 # probability of getting output as 0 - no rain
@@ -4756,12 +4500,8 @@ y_pred_test
 logreg.predict_proba(X_test)[:,0]
 ```
 
-
-
-
     array([0.91382428, 0.83565645, 0.82033915, ..., 0.97674285, 0.79855098,
            0.30734161])
-
 
 <br>
 
@@ -4771,26 +4511,14 @@ logreg.predict_proba(X_test)[:,0]
 logreg.predict_proba(X_test)[:,1]
 ```
 
-
-
-
     array([0.08617572, 0.16434355, 0.17966085, ..., 0.02325715, 0.20144902,
            0.69265839])
 
-
-
 <Br>
 
+## **14. 정확도 점수 확인**
 
-
-
-
-
-
-## __14. 정확도 점수 확인__
 [목차](#목차)
-
-
 
 ```python
 from sklearn.metrics import accuracy_score
@@ -4800,16 +4528,13 @@ print('Model accuracy score: {0:0.4f}'. format(accuracy_score(y_test, y_pred_tes
 
     Model accuracy score: 0.8502
 
-
 예측된 클래스 레이블을 나타내는 `y_pred_test`와 테스트 세트의 실제 클래스 레이블을 나타내는 `y_test` 이다.
 
 <br>
 
-
-### __훈련세트와 테스트세트 정확도 비교__
+### **훈련세트와 테스트세트 정확도 비교**
 
 이제 훈련세트와 테스트세트의 과대적합 여부를 확인하기 위해 정확도를 비교해보자.
-
 
 ```python
 y_pred_train = logreg.predict(X_train)
@@ -4817,14 +4542,9 @@ y_pred_train = logreg.predict(X_train)
 y_pred_train
 ```
 
-
-
-
     array(['No', 'No', 'No', ..., 'No', 'No', 'No'], dtype=object)
 
 <br>
-
-
 
 ```python
 print('Training-set accuracy score: {0:0.4f}'. format(accuracy_score(y_train, y_pred_train)))
@@ -4835,7 +4555,6 @@ print('Training-set accuracy score: {0:0.4f}'. format(accuracy_score(y_train, y_
 <br>
 
 ### 과대적합과 과소적합 확인
-
 
 ```python
 # print the scores on training and test set
@@ -4852,11 +4571,9 @@ print('Test set score: {:.4f}'.format(logreg.score(X_test, y_test)))
 
 훈련 세트의 정확도 점수는 0.8476이고, 테스트 세트의 정확도는 0.8501이다. 이 두 값은 꽤 비교가 가능하다. 따라서 과대적합은 아니다.
 
-
 로지스틱 회귀에서는 C=1의 기본값을 사용한다. 이는 훈련 세트와 테스트 세트 모두 대략 85%의 정확도로 좋은 성능을 제공한다. 그러나 훈련 세트와 테스트 세트 모두 모델의 성능이 매우 비교가 가능하므로, 과소적합일 가능성이 있다.
 
 C를 높이고 더 유연한 모델을 적합시켜보자.
-
 
 ```python
 # fit the Logsitic Regression model with C=100
@@ -4869,9 +4586,6 @@ logreg100 = LogisticRegression(C=100, solver='liblinear', random_state=0)
 logreg100.fit(X_train, y_train)
 ```
 
-
-
-
     LogisticRegression(C=100, class_weight=None, dual=False, fit_intercept=True,
                        intercept_scaling=1, l1_ratio=None, max_iter=100,
                        multi_class='warn', n_jobs=None, penalty='l2',
@@ -4879,7 +4593,6 @@ logreg100.fit(X_train, y_train)
                        warm_start=False)
 
 <br>
-
 
 ```python
 # print the scores on training and test set
@@ -4896,10 +4609,7 @@ print('Test set score: {:.4f}'.format(logreg100.score(X_test, y_test)))
 
 C값을 100으로 설정한 더 규제가 높은 모델을 사용했을 때, 테스트 세트의 정확도는 0.8266으로 낮아졌다. 이는 모델이 지나치게 단순해져서 일반화 능력이 감소했다는 것을 의미한다. 따라서 C=1보다 더 규제를 가하는 것은 좋지 않은 결과를 가져올 수 있다.
 
-
 이제 C=0.01로 세팅함으로써 어떤 일이 발생하는 지 봐보자.
-
-
 
 ```python
 # fit the Logsitic Regression model with C=001
@@ -4912,15 +4622,11 @@ logreg001 = LogisticRegression(C=0.01, solver='liblinear', random_state=0)
 logreg001.fit(X_train, y_train)
 ```
 
-
-
-
     LogisticRegression(C=0.01, class_weight=None, dual=False, fit_intercept=True,
                        intercept_scaling=1, l1_ratio=None, max_iter=100,
                        multi_class='warn', n_jobs=None, penalty='l2',
                        random_state=0, solver='liblinear', tol=0.0001, verbose=0,
                        warm_start=False)
-
 
 <br>
 
@@ -4939,22 +4645,17 @@ print('Test set score: {:.4f}'.format(logreg001.score(X_test, y_test)))
 
 그래서, C=0.01로 더 규제가 된 모델을 사용하면, 기본 매개 변수에 비해 훈련 및 테스트 세트 정확도가 감소한다.
 
-
-### __null 정확도 비교__
+### **null 정확도 비교**
 
 모델의 정확도는 0.8501이다. 하지만, 우리의 모델이 위의 정확도보다 매우 좋다고는 할 수 없다. 그래서 **null 정확도**<font size="2">Null Accuracy</font>를 비교해야만 한다. Null 정확도는 가장 빈번한 클래스를 예측하는 것으로 달성할 수 있는 정확도이다.
 
 따라서 먼저 테스트 세트에서 클래스 분포를 확인해야 한다.
-
 
 ```python
 # check class distribution in test set
 
 y_test.value_counts()
 ```
-
-
-
 
     No     22067
     Yes     6372
@@ -4963,8 +4664,6 @@ y_test.value_counts()
 <br>
 
 가장 빈번한 클래스의 발생 횟수는 22067이다. 따라서 총 발생 횟수로 나누어 22067을 계산하여 null 정확도를 계산할 수 있다.
-
-
 
 ```python
 # check null accuracy score
@@ -4975,7 +4674,6 @@ print('Null accuracy score: {0:0.4f}'. format(null_accuracy))
 ```
 
     Null accuracy score: 0.7759
-    
 
 <br>
 
@@ -4989,13 +4687,13 @@ print('Null accuracy score: {0:0.4f}'. format(null_accuracy))
 
 `오차 행렬`<font size="2">Confusion matrix</font>라는 도구가 도와준다.
 
-
 <br>
 
-## __15. 오차 행렬__
+## **15. 오차 행렬**
+
 [목차](#목차)
 
-오차 행렬(<font size="2">Confusion matrix</font>)은 분류 알고리즘의 성능을 요약하는 도구이다. 오차 행렬을 사용하면 분류 모델의 성능과 모델이 생성한 오류 유형을 명확하게 파악할 수 있다. 이는 각 범주별로 올바른 예측과 잘못된 예측을 요약하여 표 형태로 제공한다. 
+오차 행렬(<font size="2">Confusion matrix</font>)은 분류 알고리즘의 성능을 요약하는 도구이다. 오차 행렬을 사용하면 분류 모델의 성능과 모델이 생성한 오류 유형을 명확하게 파악할 수 있다. 이는 각 범주별로 올바른 예측과 잘못된 예측을 요약하여 표 형태로 제공한다.
 
 분류 모델의 성능을 평가할 때, 네 가지 종류의 결과가 가능하다:
 
@@ -5007,11 +4705,9 @@ print('Null accuracy score: {0:0.4f}'. format(null_accuracy))
 
 **False Negatives (FN)** - FN은 우리가 관찰이 특정 클래스에 속하지 않는다고 예측했지만, 실제로는 그 클래스에 속하는 경우이다. 이러한 오류는 매우 심각하며, `Type II error`라고 하다.
 
-
 이 네 가지 결과는 다음과 같이 요약되며, 아래의 오차 행렬에서 확인할 수 있다.
 
 <br>
-
 
 ```python
 # Print the Confusion Matrix and slice it into four pieces
@@ -5032,21 +4728,19 @@ print('\nFalse Negatives(FN) = ', cm[1,0])
 ```
 
     Confusion matrix
-    
+
      [[20892  1175]
      [ 3086  3286]]
-    
+
     True Positives(TP) =  20892
-    
+
     True Negatives(TN) =  3286
-    
+
     False Positives(FP) =  1175
-    
+
     False Negatives(FN) =  3086
 
-
 <br>
-
 
 이 오차 행렬은 20892 + 3285 = 24177개의 올바른 예측과 3087 + 1175 = 4262개의 틀린 예측을 보여줍니다.
 
@@ -5065,36 +4759,29 @@ print('\nFalse Negatives(FN) = ', cm[1,0])
 ```python
 # visualize confusion matrix with seaborn heatmap
 
-cm_matrix = pd.DataFrame(data=cm, columns=['Actual Positive:1', 'Actual Negative:0'], 
+cm_matrix = pd.DataFrame(data=cm, columns=['Actual Positive:1', 'Actual Negative:0'],
                                  index=['Predict Positive:1', 'Predict Negative:0'])
 
 sns.heatmap(cm_matrix, annot=True, fmt='d', cmap='YlGnBu')
 ```
 
-
-
-
     <matplotlib.axes._subplots.AxesSubplot at 0x7f28b1306208>
-
-
 
 ![image](https://user-images.githubusercontent.com/106001755/231873438-8d52c702-dbe8-4a3a-af98-a87d72d9ab47.png)
 
-    
-
-
 <br>
 
-## __16. 분류 지표__
+## **16. 분류 지표**
+
 [목차](#목차)
 
-### __분류 보고서__
+### **분류 보고서**
+
 **분류 보고서**는 분류 모델의 성능을 평가하는 또 다른 방법이다. 이 보고서는 모델의 **정밀도**(precision), **재현율**(recall), **F1** 점수와 **지원**(support) 점수를 표시한다.
 
 분류 보고서는 다음과 같이 출력할 수 있습니다:-
 
 <br>
-
 
 ```python
 from sklearn.metrics import classification_report
@@ -5103,19 +4790,17 @@ print(classification_report(y_test, y_pred_test))
 ```
 
                   precision    recall  f1-score   support
-    
+
               No       0.87      0.95      0.91     22067
              Yes       0.74      0.52      0.61      6372
-    
+
         accuracy                           0.85     28439
        macro avg       0.80      0.73      0.76     28439
     weighted avg       0.84      0.85      0.84     28439
-    
 
 <br>
 
-### __분류 정확성__
-
+### **분류 정확성**
 
 ```python
 TP = cm[0,0]
@@ -5123,7 +4808,6 @@ TN = cm[1,1]
 FP = cm[0,1]
 FN = cm[1,0]
 ```
-
 
 ```python
 # print classification accuracy
@@ -5136,11 +4820,9 @@ print('Classification accuracy : {0:0.4f}'.format(classification_accuracy))
 
     Classification accuracy : 0.8502
 
-
 <br>
 
-### __분류 오류__
-
+### **분류 오류**
 
 ```python
 # print classification error
@@ -5155,13 +4837,11 @@ print('Classification error : {0:0.4f}'.format(classification_error))
 
 <br>
 
-### __정밀도__
+### **정밀도**
 
 정밀도는 예측된 양성 결과 중에서 올바르게 예측된 결과의 비율로 정의할 수 있다. 이것은 참 양성(True Positive; TP)을 예측한 비율이다.
 
 수학적으로, 정밀도는 TP를 (TP + FP)로 나눈 비율로 정의된다.
-
-
 
 ```python
 # print precision score
@@ -5175,17 +4855,13 @@ print('Precision : {0:0.4f}'.format(precision))
 
     Precision : 0.9468
 
-
 <br>
 
-
-### __재현율__
+### **재현율**
 
 재현율은 참 양성 중에서 올바르게 예측된 양성의 비율을 나타냅니다. 참 양성(TP)를 참 양성과 거짓 음성의 합인 (TP + FN)으로 나눈 비율로 표현할 수 있다. 재현율은 민감도(Sensitivity)라고도 불립니다.
 
 수학적으로는 TP / (TP + FN)으로 정의할 수 있다.
-
-
 
 ```python
 recall = TP / float(TP + FN)
@@ -5195,13 +4871,11 @@ print('Recall or Sensitivity : {0:0.4f}'.format(recall))
 
     Recall or Sensitivity : 0.8713
 
-
 <br>
 
+### **참 양성 비율**
 
-### __참 양성 비율__
 참 양성 비율은 재현율과 같은 말이다.
-
 
 ```python
 true_positive_rate = TP / float(TP + FN)
@@ -5214,8 +4888,7 @@ print('True Positive Rate : {0:0.4f}'.format(true_positive_rate))
 
 <br>
 
-### __거짓 양성 비율__
-
+### **거짓 양성 비율**
 
 ```python
 false_positive_rate = FP / float(FP + TN)
@@ -5228,8 +4901,7 @@ print('False Positive Rate : {0:0.4f}'.format(false_positive_rate))
 
 <br>
 
-### __특이도__
-
+### **특이도**
 
 ```python
 specificity = TN / (TN + FP)
@@ -5241,23 +4913,21 @@ print('Specificity : {0:0.4f}'.format(specificity))
 
 <br>
 
-
-### __f1-score__
+### **f1-score**
 
 f1-score는 정밀도와 재현율의 가중 조화 평균이다. 최고의 f1-score는 1.0이며 최악의 경우는 0.0이다. f1-score는 정확도 측정치보다 항상 낮다. f1-score의 가중 평균은 전역 정확도보다 분류기 모델을 비교하는 데 사용해야 한다.
 
 <br>
 
-
 ### Support
+
 Support는 데이터셋에서 해당 클래스가 실제로 발생한 횟수를 나타내는 값이다.
 
 <br>
 
+## **17. 임계값 조정**
 
-## __17. 임계값 조정__
 [목차](#목차)
-
 
 ```python
 # print the first 10 predicted probabilities of two classes- 0 and 1
@@ -5266,9 +4936,6 @@ y_pred_prob = logreg.predict_proba(X_test)[0:10]
 
 y_pred_prob
 ```
-
-
-
 
     array([[0.91382428, 0.08617572],
            [0.83565645, 0.16434355],
@@ -5281,10 +4948,10 @@ y_pred_prob
            [0.90048436, 0.09951564],
            [0.85485267, 0.14514733]])
 
-
 <br>
 
-### __관찰 결과__
+### **관찰 결과**
+
 - 각 행(row)의 숫자는 1에 합산된다.
 
 - 2개의 열(column)은 0과 1의 2개의 클래스를 나타낸다.
@@ -5299,9 +4966,9 @@ y_pred_prob
 
 - predict_proba 과정
 
-    - 확률 값을 예측한다.
+  - 확률 값을 예측한다.
 
-    - 가장 높은 확률을 가진 클래스를 선택한다.
+  - 가장 높은 확률을 가진 클래스를 선택한다.
 
 - 분류 임계값
 
@@ -5320,9 +4987,6 @@ y_pred_prob_df = pd.DataFrame(data=y_pred_prob, columns=['Prob of - No rain tomo
 
 y_pred_prob_df
 ```
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -5388,7 +5052,6 @@ y_pred_prob_df
 </table>
 </div>
 
-
 <br>
 
 ```python
@@ -5397,12 +5060,8 @@ y_pred_prob_df
 logreg.predict_proba(X_test)[0:10, 1]
 ```
 
-
-
-
     array([0.08617572, 0.16434355, 0.17966085, 0.00974678, 0.04273289,
            0.02006092, 0.82166989, 0.76519082, 0.09951564, 0.14514733])
-
 
 <br>
 
@@ -5412,12 +5071,11 @@ logreg.predict_proba(X_test)[0:10, 1]
 y_pred1 = logreg.predict_proba(X_test)[:, 1]
 ```
 
-
 ```python
 # plot histogram of predicted probabilities
 
 
-# adjust the font size 
+# adjust the font size
 plt.rcParams['font.size'] = 12
 
 
@@ -5438,23 +5096,13 @@ plt.xlabel('Predicted probabilities of rain')
 plt.ylabel('Frequency')
 ```
 
-
-
-
     Text(0, 0.5, 'Frequency')
 
-
-
-
-    
 ![image](https://user-images.githubusercontent.com/106001755/231873492-b87ba637-eeab-4da4-9837-c1d729453532.png)
-
-
 
 <br>
 
-
-### __관찰 결과__
+### **관찰 결과**
 
 - 위의 히스토그램은 매우 양으로 치우쳤다.
 
@@ -5466,128 +5114,126 @@ plt.ylabel('Frequency')
 
 - 대부분의 관측치는 내일 비가 오지 않을 것이라고 예측한다.
 
-
 <br>
 
-### __더 낮은 임계값__
-
+### **더 낮은 임계값**
 
 ```python
 from sklearn.preprocessing import binarize
 
 for i in range(1,5):
-    
+
     cm1=0
-    
+
     y_pred1 = logreg.predict_proba(X_test)[:,1]
-    
+
     y_pred1 = y_pred1.reshape(-1,1)
-    
+
     y_pred2 = binarize(y_pred1, i/10)
-    
+
     y_pred2 = np.where(y_pred2 == 1, 'Yes', 'No')
-    
+
     cm1 = confusion_matrix(y_test, y_pred2)
-        
+
     print ('With',i/10,'threshold the Confusion Matrix is ','\n\n',cm1,'\n\n',
-           
-            'with',cm1[0,0]+cm1[1,1],'correct predictions, ', '\n\n', 
-           
+
+            'with',cm1[0,0]+cm1[1,1],'correct predictions, ', '\n\n',
+
             cm1[0,1],'Type I errors( False Positives), ','\n\n',
-           
+
             cm1[1,0],'Type II errors( False Negatives), ','\n\n',
-           
+
            'Accuracy score: ', (accuracy_score(y_test, y_pred2)), '\n\n',
-           
+
            'Sensitivity: ',cm1[1,1]/(float(cm1[1,1]+cm1[1,0])), '\n\n',
-           
+
            'Specificity: ',cm1[0,0]/(float(cm1[0,0]+cm1[0,1])),'\n\n',
-          
+
             '====================================================', '\n\n')
 ```
 
-    With 0.1 threshold the Confusion Matrix is  
-    
+    With 0.1 threshold the Confusion Matrix is
+
      [[12726  9341]
-     [  547  5825]] 
-    
-     with 18551 correct predictions,  
-    
-     9341 Type I errors( False Positives),  
-    
-     547 Type II errors( False Negatives),  
-    
-     Accuracy score:  0.6523084496641935 
-    
-     Sensitivity:  0.9141556811048337 
-    
-     Specificity:  0.5766982371867494 
-    
-     ==================================================== 
-    
-    
-    With 0.2 threshold the Confusion Matrix is  
-    
+     [  547  5825]]
+
+     with 18551 correct predictions,
+
+     9341 Type I errors( False Positives),
+
+     547 Type II errors( False Negatives),
+
+     Accuracy score:  0.6523084496641935
+
+     Sensitivity:  0.9141556811048337
+
+     Specificity:  0.5766982371867494
+
+     ====================================================
+
+
+    With 0.2 threshold the Confusion Matrix is
+
      [[17066  5001]
-     [ 1234  5138]] 
-    
-     with 22204 correct predictions,  
-    
-     5001 Type I errors( False Positives),  
-    
-     1234 Type II errors( False Negatives),  
-    
-     Accuracy score:  0.7807588171173389 
-    
-     Sensitivity:  0.8063402385436284 
-    
-     Specificity:  0.7733720034440568 
-    
-     ==================================================== 
-    
-    
-    With 0.3 threshold the Confusion Matrix is  
-    
+     [ 1234  5138]]
+
+     with 22204 correct predictions,
+
+     5001 Type I errors( False Positives),
+
+     1234 Type II errors( False Negatives),
+
+     Accuracy score:  0.7807588171173389
+
+     Sensitivity:  0.8063402385436284
+
+     Specificity:  0.7733720034440568
+
+     ====================================================
+
+
+    With 0.3 threshold the Confusion Matrix is
+
      [[19080  2987]
-     [ 1872  4500]] 
-    
-     with 23580 correct predictions,  
-    
-     2987 Type I errors( False Positives),  
-    
-     1872 Type II errors( False Negatives),  
-    
-     Accuracy score:  0.8291430781673055 
-    
-     Sensitivity:  0.7062146892655368 
-    
-     Specificity:  0.8646395069560883 
-    
-     ==================================================== 
-    
-    
-    With 0.4 threshold the Confusion Matrix is  
-    
+     [ 1872  4500]]
+
+     with 23580 correct predictions,
+
+     2987 Type I errors( False Positives),
+
+     1872 Type II errors( False Negatives),
+
+     Accuracy score:  0.8291430781673055
+
+     Sensitivity:  0.7062146892655368
+
+     Specificity:  0.8646395069560883
+
+     ====================================================
+
+
+    With 0.4 threshold the Confusion Matrix is
+
      [[20191  1876]
-     [ 2517  3855]] 
-    
-     with 24046 correct predictions,  
-    
-     1876 Type I errors( False Positives),  
-    
-     2517 Type II errors( False Negatives),  
-    
-     Accuracy score:  0.845529027040332 
-    
-     Sensitivity:  0.6049905838041432 
-    
-     Specificity:  0.9149861784565188 
-    
+     [ 2517  3855]]
+
+     with 24046 correct predictions,
+
+     1876 Type I errors( False Positives),
+
+     2517 Type II errors( False Negatives),
+
+     Accuracy score:  0.845529027040332
+
+     Sensitivity:  0.6049905838041432
+
+     Specificity:  0.9149861784565188
+
      ====================================================
 
 <br>
 
-### __Comments__
+### **Comments**
 
 - 이진 분류 문제에서는 기본적으로 예측된 확률을 클래스 예측으로 변환하기 위해 0.5의 임계값을 사용한다.
 
@@ -5601,16 +5247,17 @@ for i in range(1,5):
 
 <br>
 
-## __18. ROC-AUC__
+## **18. ROC-AUC**
+
 [목차](#목차)
 
-### __ROC 곡선__
+### **ROC 곡선**
 
 분류 모델의 성능을 시각적으로 측정하는 또 다른 도구는 ROC 곡선이다.
 
 ROC 곡선은 다양한 임계값에서 참 양성 비율(TPR)와 거짓 양성 비율(FPR)을 나타냅니다.
 
-다양한 임계값에서의 TPR과 FPR로 이루어진 ROC 곡선의 일반적인 성능을 파악할 수 있다. 임계값을 낮출수록, 더 많은 항목이 긍정적으로 분류될 수 있다. 
+다양한 임계값에서의 TPR과 FPR로 이루어진 ROC 곡선의 일반적인 성능을 파악할 수 있다. 임계값을 낮출수록, 더 많은 항목이 긍정적으로 분류될 수 있다.
 
 <br>
 
@@ -5639,12 +5286,9 @@ plt.show()
 
 ```
 
-
-    
 ![image](https://user-images.githubusercontent.com/106001755/231873524-30b35f73-1978-4be5-a354-f9b46fd957e0.png)
 
-
-### __ROC-AUC__
+### **ROC-AUC**
 
 ROC AUC는 분류기의 성능을 비교하는 기술이다. 이 기술에서는 곡선 아래 면적인 AUC (Area Under Curve)를 측정한다. 완벽한 분류기는 ROC AUC가 1이 되고, 완전한 무작위 분류기는 ROC AUC가 0.5가 된다.
 
@@ -5672,9 +5316,8 @@ print('ROC AUC : {:.4f}'.format(ROC_AUC))
 
 <br>
 
-
 ```python
-# calculate cross-validated ROC AUC 
+# calculate cross-validated ROC AUC
 
 from sklearn.model_selection import cross_val_score
 
@@ -5687,9 +5330,9 @@ print('Cross validated ROC AUC : {:.4f}'.format(Cross_validated_ROC_AUC))
 
 <br>
 
-## __19. k-Fold 교차 검증__
-[목차](#목차)
+## **19. k-Fold 교차 검증**
 
+[목차](#목차)
 
 ```python
 # Applying 5-Fold Cross Validation
@@ -5707,8 +5350,6 @@ print('Cross-validation scores:{}'.format(scores))
 
 교차 검증 정확도는 평균을 계산하여 요약할 수 있다.
 
-
-
 ```python
 # compute Average cross-validation score
 
@@ -5723,23 +5364,20 @@ print('Average cross-validation score: {:.4f}'.format(scores.mean()))
 
 <br>
 
+## **20. 그리드 탐색 CV를 사용한 하이퍼파라미터 최적화**
 
-
-
-## __20. 그리드 탐색 CV를 사용한 하이퍼파라미터 최적화__
 [목차](#목차)
-
 
 ```python
 from sklearn.model_selection import GridSearchCV
 
 
-parameters = [{'penalty':['l1','l2']}, 
+parameters = [{'penalty':['l1','l2']},
               {'C':[1, 10, 100, 1000]}]
 
 
 
-grid_search = GridSearchCV(estimator = logreg,  
+grid_search = GridSearchCV(estimator = logreg,
                            param_grid = parameters,
                            scoring = 'accuracy',
                            cv = 5,
@@ -5749,9 +5387,6 @@ grid_search = GridSearchCV(estimator = logreg,
 grid_search.fit(X_train, y_train)
 
 ```
-
-
-
 
     GridSearchCV(cv=5, error_score='raise-deprecating',
                  estimator=LogisticRegression(C=1.0, class_weight=None, dual=False,
@@ -5766,7 +5401,6 @@ grid_search.fit(X_train, y_train)
                  param_grid=[{'penalty': ['l1', 'l2']}, {'C': [1, 10, 100, 1000]}],
                  pre_dispatch='2*n_jobs', refit=True, return_train_score=False,
                  scoring='accuracy', verbose=0)
-
 
 <br>
 
@@ -5784,21 +5418,21 @@ print('\n\nEstimator that was chosen by the search :','\n\n', (grid_search.best_
 ```
 
     GridSearch CV best score : 0.8474
-    
-    
-    Parameters that give the best results : 
-    
+
+
+    Parameters that give the best results :
+
      {'penalty': 'l1'}
-    
-    
-    Estimator that was chosen by the search : 
-    
+
+
+    Estimator that was chosen by the search :
+
      LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
                        intercept_scaling=1, l1_ratio=None, max_iter=100,
                        multi_class='warn', n_jobs=None, penalty='l1',
                        random_state=0, solver='liblinear', tol=0.0001, verbose=0,
                        warm_start=False)
-    
+
 <br>
 
 ```python
@@ -5808,9 +5442,6 @@ print('GridSearch CV score on test set: {0:0.4f}'.format(grid_search.score(X_tes
 ```
 
     GridSearch CV score on test set: 0.8507
-
-
-
 
 <br>
 
@@ -5822,7 +5453,8 @@ print('GridSearch CV score on test set: {0:0.4f}'.format(grid_search.score(X_tes
 
 <br>
 
-## __21. 결과 및 결론__
+## **21. 결과 및 결론**
+
 [목차](#목차)
 
 1. 로지스틱 회귀 모델의 정확도 점수는 0.8501다. 따라서 이 모델은 오늘 오스트레일리아에서 비가 올 것인지 아닌지 예측하는 데 아주 잘 작동한다.
@@ -5845,9 +5477,8 @@ print('GridSearch CV score on test set: {0:0.4f}'.format(grid_search.score(X_tes
 
 10. 원래 모델의 테스트 정확도는 0.8501이고, GridSearch CV의 정확도는 0.8507다. GridSearch CV가 이 모델에서 성능을 개선시켰다는 것을 알 수 있다.
 
+## **22. 참고 문헌**
 
-
-## __22. 참고 문헌__
 [목차](#목차)
 
 1. Hands on Machine Learning with Scikit-Learn and Tensorflow by Aurélién Géron
@@ -5873,9 +5504,3 @@ print('GridSearch CV score on test set: {0:0.4f}'.format(grid_search.score(X_tes
 11. https://www.kaggle.com/neisha/heart-disease-prediction-using-logistic-regression
 
 12. https://www.ritchieng.com/machine-learning-evaluate-classification-model/
-
-
-
-
-
-
