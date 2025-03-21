@@ -18,11 +18,11 @@ future: true
 
 # Site Settings
 locale                   : "ko"
-title                    : "siggu blog"
+title                    : "쓰리투원 프론트 슛"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : "Jeong Mok Kim"
-description              : "An amazing website."
+name                     : "김정목"
+description              : "siggu's study blog"
 url                      : "https://siggu.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -60,7 +60,7 @@ reCaptcha:
   secret                 :
 atom_feed:
   path                   : # blank (default) uses feed.xml
-  hide                   : # true, false (default)
+  hide                   : true
 search                   : # true, false (default)
 search_full_content      : # true, false (default)
 search_provider          : google #lunr (default), algolia, google
@@ -106,15 +106,14 @@ analytics:
 
 # Site Author
 author:
-  name             : "Kim Jeong Mok"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : ""
-  location         : "South Korea"
-  email            : "m0_w_0m@naver.com"
+  name             : "김정목"
+  avatar           : "https://avatars.githubusercontent.com/u/106001755?v=4"
+  bio              : "***지속학습과 연계학습***에 적극적인 개발자 김정목 입니다"
+  email            : "siggu100@gmail.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      # url: "mailto:your.name@email.com"
+      # url: "mailto:m0_w_0m@naver.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
@@ -126,7 +125,7 @@ author:
       # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
+      url: "https://github.com/siggu"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
@@ -142,7 +141,7 @@ footer:
       # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url:
+      url: "https://github.com/siggu"
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:
