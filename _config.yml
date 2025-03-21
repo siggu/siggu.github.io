@@ -296,11 +296,10 @@ defaults:
       related: true
       sitemap: true
 
-# Collections
-collections:
-  machine-learning:
-    output: true
-  til:
-    output: true
-  react:
-    output: true
+jekyll-archives:
+  enabled:
+    - categories
+  layouts:
+    category: archive-taxonomy
+  permalinks:
+    category: /categories/:name/
