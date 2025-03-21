@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "ML Model을 사용해 Web App 만들기"
-category: machine-learning
+cattegories: machine-learning
 tags: ["머신러닝", "웹앱"]
 ---
 

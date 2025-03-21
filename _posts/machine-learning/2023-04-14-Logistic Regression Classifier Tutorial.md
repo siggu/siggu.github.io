@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "로지스틱 회귀 분류기 튜토리얼"
-category: machine-learning
+cattegories: machine-learning
 tags: ["머신러닝", "로지스틱 회귀 분류기"]
 ---
 
