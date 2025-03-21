@@ -1,10 +1,10 @@
 # main links
-main:
-  - title: "Home"
-    url: /
-  - title: "Machine Learning"
-    url: /machine-learning/
-  - title: "JavaScript"
-    url: /javascript/
-  - title: "TIL"
-    url: /til/
+# main:
+#   - title: "Home"
+#     url: /
+#   - title: "Machine Learning"
+#     url: /machine-learning/
+#   - title: "JavaScript"
+#     url: /javascript/
+#   - title: "TIL"
+#     url: /til/

@@ -4,18 +4,27 @@ layout: archive
 
 {{ content }}
 
-<h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
+<h3>카테고리</h2>
+<ul class="category-list">
+  {% for category in site.categories %} {% assign category_name = category[0] %}
+  {% assign posts_in_category = category[1] %}
+  <li>
+    <a href="/categories/{{ category_name | uri_escape }}/">
+      {{ category_name }} ({{ posts_in_category | size }})
+    </a>
+  </li>
+  {% endfor %}
+</ul>
 
-{% if paginator %}
-  {% assign posts = paginator.posts %}
-{% else %}
-  {% assign posts = site.posts %}
-{% endif %}
+<h3 class="archive__subtitle">
+  {{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}
+</h3>
 
-{% assign entries_layout = page.entries_layout | default: 'list' %}
+{% if paginator %} {% assign posts = paginator.posts %} {% else %} {% assign
+posts = site.posts %} {% endif %} {% assign entries_layout = page.entries_layout
+| default: 'list' %}
 <div class="entries-{{ entries_layout }}">
-  {% for post in posts %}
-    {% include archive-single.html type=entries_layout %}
+  {% for post in posts %} {% include archive-single.html type=entries_layout %}
   {% endfor %}
 </div>
 
