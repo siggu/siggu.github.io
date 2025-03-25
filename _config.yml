@@ -293,3 +293,7 @@ defaults:
       comments: # true
       share: true
       related: true
+
+collections:
+  categories:
+    output: true
