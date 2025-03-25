@@ -4,11 +4,10 @@ layout: archive
 permalink: /categories/
 ---
 
-<h1>Categories</h1>
 <ul>
   {% for category in site.categories %}
   <li>
-    <a href="/categories/{{ category[0] }}"
+    <a href="{{ site.baseurl }}/categories/{{ category[0] }}"
       >{{ category[0] }} ({{ category[1] | size }})</a
     >
   </li>

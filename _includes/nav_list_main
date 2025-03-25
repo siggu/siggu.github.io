@@ -10,6 +10,9 @@
       <li>
             📂 <span>전체 글 수</style> <span>{{sum}}</style> <span>개</style> 
       </li>
+      <li class="nav__sub-title">
+            <a href="{{ site.baseurl }}/categories/">전체 카테고리</a>
+      </li>
       <li>
         <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
         <span class="nav__sub-title">til</span>
@@ -19,7 +22,7 @@
                 <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
                 {% for category in site.categories %}
                     {% if category[0] == "til" %}
-                        <li><a href="/categories/til" class="">til ({{category[1].size}})</a></li>
+                        <li><a href="{{ site.baseurl }}/categories/til" class="">til ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
@@ -27,7 +30,7 @@
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "machine-learning" %}
-                        <li><a href="/categories/machine-learning" class="">머신러닝({{category[1].size}})</a></li>
+                        <li><a href="{{ site.baseurl }}/categories/machine-learning" class="">머신러닝({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
