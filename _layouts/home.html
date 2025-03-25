@@ -4,12 +4,12 @@ layout: archive
 
 {{ content }}
 
-<h3>카테고리</h2>
+<h3>카테고리</h3>
 <ul class="category-list">
   {% for category in site.categories %} {% assign category_name = category[0] %}
   {% assign posts_in_category = category[1] %}
   <li>
-    <a href="/categories/{{ category_name | uri_escape }}/">
+    <a href="{{ site.baseurl }}/categories/{{ category_name | slugify }}/">
       {{ category_name }} ({{ posts_in_category | size }})
     </a>
   </li>
@@ -23,6 +23,7 @@ layout: archive
 {% if paginator %} {% assign posts = paginator.posts %} {% else %} {% assign
 posts = site.posts %} {% endif %} {% assign entries_layout = page.entries_layout
 | default: 'list' %}
+
 <div class="entries-{{ entries_layout }}">
   {% for post in posts %} {% include archive-single.html type=entries_layout %}
   {% endfor %}
