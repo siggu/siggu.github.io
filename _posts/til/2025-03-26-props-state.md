@@ -5,7 +5,7 @@ categories: [til]
 # tags: ["머신러닝", "웹앱"]
 ---
 
-> 2025-03-24 TIL-리액트의 props와 state
+> 2025-03-26 TIL-리액트의 props와 state
 
 # 리액트의 props와 state
 
