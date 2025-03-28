@@ -3,7 +3,6 @@ document.categories %}
 <p class="page__meta">
   {% if document.categories %}
   <span class="page__meta-category">
-    <i class="far fa-folder-open" aria-hidden="true"></i>
     {% for category in document.categories %}
     <a href="{{ site.baseurl }}/categories/{{ category | slugify }}"
       >{{ category }}</a
