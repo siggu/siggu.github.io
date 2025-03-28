@@ -5,7 +5,7 @@ categories: [til]
 # tags: ["머신러닝", "웹앱"]
 ---
 
-> 2025-03-27 TIL-리액트의 Controlled Component와 Uncontrolled Component의 차이점(Closure)
+> 2025-03-27 TIL-리액트의 Controlled Component와 Uncontrolled Component의 차이점
 
 # 리액트의 Controlled Component와 Uncontrolled Component의 차이점
 
