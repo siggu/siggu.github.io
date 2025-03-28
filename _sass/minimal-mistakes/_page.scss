@@ -330,8 +330,12 @@ body {
 }
 
 .page__meta-category {
-  font-size: 16px;
-  color: #0092ca;
+  font-size: 16px !important;
+  color: #0092ca !important;
+}
+
+.page__meta-category i::before {
+  content: none;
 }
 
 /*
