@@ -1,21 +1,11 @@
 {% assign document = post | default: page %} {% if document.show_date or
 document.categories %}
 <p class="page__meta">
-  {% if document.show_date and document.date %} {% assign date = document.date
-  %}
-  <span class="page__meta-date">
-    <i class="far fa-calendar-alt" aria-hidden="true"></i>
-    {% assign date_format = site.date_format | default: "%B %-d, %Y" %}
-    <time datetime="{{ date | date_to_xmlschema }}"
-      >{{ date | date: date_format }}</time
-    >
-  </span>
-  {% endif %} {% if document.categories %}
-  <span class="page__meta-sep"> | </span>
+  {% if document.categories %}
   <span class="page__meta-category">
     <i class="far fa-folder-open" aria-hidden="true"></i>
     {% for category in document.categories %}
-    <a href="{{ site.baseurl }}/categories/{{ category | slugify }}/"
+    <a href="{{ site.baseurl }}/categories/{{ category | slugify }}"
       >{{ category }}</a
     >{% unless forloop.last %}, {% endunless %} {% endfor %}
   </span>
