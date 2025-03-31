@@ -5,7 +5,7 @@ categories: [til]
 # tags: ["머신러닝", "웹앱"]
 ---
 
-> 2025-03-29 TIL-리액트의 Strict Mode란?
+> 2025-03-31 TIL-리액트의 Strict Mode란?
 
 # 리액트의 Strict Mode란?
 
