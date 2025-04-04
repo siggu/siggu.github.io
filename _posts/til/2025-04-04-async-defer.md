@@ -5,7 +5,7 @@ categories: [til]
 # tags: ["머신러닝", "웹앱"]
 ---
 
-> 2025-04-03 TIL-script 태그에서 async와 defer의 차이점
+> 2025-04-04 TIL-script 태그에서 async와 defer의 차이점
 
 # script 태그에서 async와 defer의 차이점
 
