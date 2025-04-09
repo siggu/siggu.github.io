@@ -29,7 +29,7 @@ categories: [til]
 
 - 서버의 데이터베이스에서 제공하는 **고유 ID**를 사용하는 것이 가장 권장된다. 만약 이 방법이 불가능할 경우, `${item.title}_${item.username}`와 같은 형태로 여러 필드를 결합하여 고유 값을 생성할 수 있다. 혹은, 렌더링 이전 시점에 UUID 혹은 랜덤 값을 생성하여 고유 값을 부여할 수 있다.
 
-## 추가로 학습할만한 자료
+## 추가로 학습할 만한 자료
 
 - [[Robin Porkorny]Index as a key is an anti-pattern](https://robinpokorny.medium.com/index-as-a-key-is-an-anti-pattern-e0349aece318)
 - [[Jeongkuk Seo] 배열의 index를 key로 쓰면 안되는 이유](https://medium.com/sjk5766/react-%EB%B0%B0%EC%97%B4%EC%9D%98-index%EB%A5%BC-key%EB%A1%9C-%EC%93%B0%EB%A9%B4-%EC%95%88%EB%90%98%EB%8A%94-%EC%9D%B4%EC%9C%A0-3ce48b3a18fb)
