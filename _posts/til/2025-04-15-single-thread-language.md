@@ -2,6 +2,8 @@
 layout: single
 title: "자바스크립트는 싱글 스레드 언어인데 어떻게 동시에 여러 작업들을 수행하는가?"
 categories: [til]
+featured: true
+subcategory: JavaScript
 ---
 
 > 2025-04-15 TIL-자바스크립트는 싱글 스레드 언어인데 어떻게 동시에 여러 작업들을 수행하는가?

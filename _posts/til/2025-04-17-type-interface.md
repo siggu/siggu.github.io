@@ -2,6 +2,7 @@
 layout: single
 title: "타입스크립트의 타입과 인터페이스의 차이"
 categories: [til]
+subcategory: TypeScript
 ---
 
 > 2025-04-17 TIL-타입스크립트의 타입과 인터페이스의 차이

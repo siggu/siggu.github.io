@@ -3,6 +3,7 @@ layout: single
 title: "리액트의 props와 state"
 categories: [til]
 # tags: ["머신러닝", "웹앱"]
+subcategory: React
 ---
 
 > 2025-03-26 TIL-리액트의 props와 state

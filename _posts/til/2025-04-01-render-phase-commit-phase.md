@@ -3,6 +3,7 @@ layout: single
 title: "리액트의 render pahse와 commit phase란?"
 categories: [til]
 # tags: ["머신러닝", "웹앱"]
+subcategory: React
 ---
 
 > 2025-04-01 TIL-리액트의 render pahse와 commit phase란?

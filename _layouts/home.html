@@ -4,6 +4,15 @@ layout: archive
 
 {{ content }}
 
+<h3 class="archive__subtitle">추천 포스트</h3>
+<div class="entries-featured">
+  {% assign featured_posts = site.posts | where: "featured", true %} {% if
+  featured_posts.size > 0 %} {% for post in featured_posts %} {% include
+  archive-single.html type="list" %} {% endfor %} {% else %}
+  <p>추천할 포스트가 없습니다.</p>
+  {% endif %}
+</div>
+
 <h3 class="archive__subtitle">
   {{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}
 </h3>

@@ -2,8 +2,8 @@
 layout: single
 title: "이미지 크기로 인한 렌더링 속도 저하 개선 방법"
 categories: [til]
+subcategory: Web
 ---
-
 
 > 2025-04-13 TIL-이미지 크기로 인한 렌더링 속도 저하 개선 방법
 

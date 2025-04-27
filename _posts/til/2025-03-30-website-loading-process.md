@@ -3,6 +3,7 @@ layout: single
 title: "웹페이지 로딩 과정"
 categories: [til]
 # tags: ["머신러닝", "웹앱"]
+subcategory: Web
 ---
 
 > 2025-03-30 TIL-웹페이지 로딩 과정

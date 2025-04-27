@@ -2,6 +2,7 @@
 layout: single
 title: "시맨틱 마크업이란?"
 categories: [til]
+subcategory: Web
 ---
 
 > 2025-04-18 TIL-시맨틱 마크업이란?

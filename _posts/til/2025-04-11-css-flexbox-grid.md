@@ -2,6 +2,7 @@
 layout: single
 title: "CSS Flexbox와 Grid의 차이점"
 categories: [til]
+subcategory: CSS
 ---
 
 > 2025-04-11 TIL - CSS Flexbox와 Grid의 차이점

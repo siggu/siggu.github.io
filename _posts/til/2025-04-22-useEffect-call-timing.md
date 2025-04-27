@@ -2,6 +2,7 @@
 layout: single
 title: "useEffect 호출 시점"
 categories: [til]
+subcategory: React
 ---
 
 > 2025-04-22TIL-useEffect 호출 시점

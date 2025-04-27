@@ -3,6 +3,7 @@ layout: single
 title: "리액트의 Strict Mode란?"
 categories: [til]
 # tags: ["머신러닝", "웹앱"]
+subcategory: React
 ---
 
 > 2025-03-31 TIL-리액트의 Strict Mode란?

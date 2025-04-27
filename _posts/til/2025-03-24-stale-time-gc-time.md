@@ -3,6 +3,7 @@ layout: single
 title: "staleTime과 gcTime"
 categories: [til]
 # tags: ["머신러닝", "웹앱"]
+subcategory: React
 ---
 
 > 2025-03-24 TIL-staleTime과 gcTime

@@ -3,6 +3,7 @@ layout: single
 title: "이벤트 전파"
 categories: [til]
 # tags: ["머신러닝", "웹앱"]
+subcategory: JavaScript
 ---
 
 > 2025-04-05 TIL-이벤트 전파

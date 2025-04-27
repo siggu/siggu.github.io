@@ -3,6 +3,7 @@ layout: single
 title: "리액트에서 index를 key값으로 사용하면 안 되는 이유"
 categories: [til]
 # tags: ["머신러닝", "웹앱"]
+subcategory: React
 ---
 
 > 2025-04-07 TIL-리액트에서 index를 key값으로 사용하면 안 되는 이유

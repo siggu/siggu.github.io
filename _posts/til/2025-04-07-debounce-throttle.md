@@ -3,6 +3,7 @@ layout: single
 title: "디바운스와 쓰로틀"
 categories: [til]
 # tags: ["머신러닝", "웹앱"]
+subcategory: JavaScript
 ---
 
 > 2025-04-07 TIL-디바운스와 쓰로틀

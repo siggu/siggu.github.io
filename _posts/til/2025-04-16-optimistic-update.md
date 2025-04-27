@@ -2,6 +2,7 @@
 layout: single
 title: "낙관적 업데이트란?"
 categories: [til]
+subcategory: React
 ---
 
 > 2025-04-16 TIL-낙관적 업데이트란?

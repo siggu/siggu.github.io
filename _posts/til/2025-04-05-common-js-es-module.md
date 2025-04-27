@@ -3,6 +3,7 @@ layout: single
 title: "CommonJS와 ES Module의 차이점"
 categories: [til]
 # tags: ["머신러닝", "웹앱"]
+subcategory: JavaScript
 ---
 
 > 2025-04-05 TIL-CommonJS와 ES Module의 차이점

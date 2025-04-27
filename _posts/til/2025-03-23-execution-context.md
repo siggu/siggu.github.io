@@ -3,6 +3,7 @@ layout: single
 title: "실행 컨텍스트"
 categories: [til]
 # tags: ["머신러닝", "웹앱"]
+subcategory: JavaScript
 ---
 
 > 2025-03-23 TIL-실행 컨텍스트

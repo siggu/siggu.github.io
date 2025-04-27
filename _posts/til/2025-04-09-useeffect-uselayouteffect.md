@@ -3,6 +3,7 @@ layout: single
 title: "useEffect와 useLayoutEffect"
 categories: [til]
 # tags: ["머신러닝", "웹앱"]
+subcategory: React
 ---
 
 > 2025-04-09 TIL-useEffect와 useLayoutEffect

@@ -2,6 +2,7 @@
 layout: single
 title: "undefined와 null의 차이점"
 categories: [til]
+subcategory: JavaScript
 ---
 
 > 2025-04-21 TIL-undefined와 null의 차이점
