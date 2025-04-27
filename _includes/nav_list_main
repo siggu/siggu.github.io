@@ -1,14 +1,12 @@
-<!--전체 글 수를 세기 위한 연산. sum 변수에 전체 글 수 저장-->
-
+<!-- 전체 글 수를 세기 위한 연산 -->
 {% assign sum = site.posts | size %}
 
 <nav class="nav__list">
   <input id="ac-toc" name="accordion-toc" type="checkbox" />
-  <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label }}</label>
+  <label for="ac-toc">{{ site.data.ui - text[site.locale].menu_label }}</label>
 
   <ul class="nav__items" id="category_tag_menu">
     <!-- 전체 글 수 -->
-    {% assign sum = site.posts | size %}
     <li>
       📂 <span>전체 글 수</span> <span>{{ sum }}</span> <span>개</span>
     </li>
@@ -17,40 +15,51 @@
     <li class="nav__sub-title">
       <a href="{{ site.baseurl }}/categories/til">TIL</a>
     </li>
-    <ul>
-      {% assign til_posts = site.categories.til %}
-      {% assign til_subcategories = til_posts | map: "subcategory" | uniq %}
-      {% for subcat in til_subcategories %}
-        {% if subcat %}
-          <li>
-            <a href="{{ site.baseurl }}/categories/til/{{ subcat | slugify }}">
-              {{ subcat | capitalize }}
-              ({{ til_posts | where: "subcategory", subcat | size }})
-            </a>
-          </li>
-        {% endif %}
-      {% endfor %}
+    <ul class="nav__sub-list">
+      {% assign til_posts = site.categories.til %} {% assign til_subcategories =
+      til_posts | map: "subcategory" | uniq %} {% for subcat in
+      til_subcategories %} {% if subcat %}
+      <li class="nav__sub-item">
+        <a href="{{ site.baseurl }}/categories/til/{{ subcat | slugify }}">
+          {{ subcat | capitalize }}
+          ({{ til_posts | where: "subcategory", subcat | size }})
+        </a>
+      </li>
+      {% endif %} {% endfor %}
     </ul>
 
-    <!-- 다른 최상위 카테고리: machine-learning -->
-    <span class="nav__sub-title">Machine Learning</span>
-    <ul>
-      {% for category in site.categories %}
-        {% if category[0] == "machine-learning" %}
-          <li><a href="{{ site.baseurl }}/categories/machine-learning">머신러닝({{ category[1].size }})</a></li>
-        {% endif %}
-      {% endfor %}
+    <!-- 최상위 카테고리: Machine Learning -->
+    <li class="nav__sub-title">
+      <a href="{{ site.baseurl }}/categories/machine-learning"
+        >Machine Learning</a
+      >
+    </li>
+    <ul class="nav__sub-list">
+      {% assign ml_posts = site.categories['machine-learning'] %} {% if ml_posts
+      %}
+      <li class="nav__sub-item">
+        <a href="{{ site.baseurl }}/categories/machine-learning">
+          머신러닝 ({{ ml_posts | size }})
+        </a>
+      </li>
+      {% endif %}
     </ul>
 
-    <!-- 다른 최상위 카테고리: modern-javascript -->
-    <span class="nav__sub-title">Modern JavaScript</span>
-    <ul>
-      {% for category in site.categories %}
-        {% if category[0] == "modern-javascript" %}
-          <li><a href="{{ site.baseurl }}/categories/modern-javascript">모던 자바스크립트 스터디({{ category[1].size }})</a></li>
-        {% endif %}
-      {% endfor %}
+    <!-- 최상위 카테고리: Modern JavaScript -->
+    <li class="nav__sub-title">
+      <a href="{{ site.baseurl }}/categories/modern-javascript"
+        >Modern JavaScript</a
+      >
+    </li>
+    <ul class="nav__sub-list">
+      {% assign mj_posts = site.categories['modern-javascript'] %} {% if
+      mj_posts %}
+      <li class="nav__sub-item">
+        <a href="{{ site.baseurl }}/categories/modern-javascript">
+          모던 자바스크립트 스터디 ({{ mj_posts | size }})
+        </a>
+      </li>
+      {% endif %}
     </ul>
-
   </ul>
 </nav>

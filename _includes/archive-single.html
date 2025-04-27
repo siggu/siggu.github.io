@@ -1,8 +1,6 @@
-{% if post.header.teaser %} {% capture teaser %}{{ post.header.teaser }}{%
-endcapture %} {% else %} {% assign teaser = site.teaser %} {% endif %} {% if
-post.id %} {% assign title = post.title | markdownify | remove: "
-<p>" | remove: "</p>
-" %} {% else %} {% assign title = post.title %} {% endif %}
+{% assign post = include.post %} {% assign teaser = post.header.teaser |
+default: site.teaser %} {% assign title = post.title | markdownify | strip_html
+%}
 
 <div class="{{ include.type | default: 'list' }}__item">
   <article
@@ -15,21 +13,12 @@ post.id %} {% assign title = post.title | markdownify | remove: "
       <img src="{{ teaser | relative_url }}" alt="" />
     </div>
     {% endif %}
+
     <h2 class="archive__item-title no_toc" itemprop="headline">
       {% if post.link %}
-      <a href="{{ post.link }}">
-        {% if post.categories contains "til" and post.subcategory %} TIL - {{
-        post.subcategory | capitalize }} - {% endif %} {{ title }}
-      </a>
-      <a href="{{ post.url | relative_url }}" rel="permalink">
-        <i class="fas fa-link" aria-hidden="true" title="permalink"></i>
-        <span class="sr-only">Permalink</span>
-      </a>
+      <a href="{{ post.link }}">{{ title }}</a>
       {% else %}
-      <a href="{{ post.url | relative_url }}" rel="permalink">
-        {% if post.categories contains "til" and post.subcategory %} TIL - {{
-        post.subcategory | capitalize }} - {% endif %} {{ title }}
-      </a>
+      <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
       {% endif %}
     </h2>
 

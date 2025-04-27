@@ -6,8 +6,12 @@ document.categories %}
     {% for category in document.categories %}
     <a href="{{ site.baseurl }}/categories/{{ category | slugify }}"
       >{{ category }}</a
-    >{% unless forloop.last %}, {% endunless %} {% endfor %}
+    >
+    {% endfor %} {% if document.subcategory %}
+    <span class="page__meta-subcategory">- {{ document.subcategory }}</span>
+    {% endif %}
   </span>
   {% endif %}
 </p>
+
 {% endif %}
