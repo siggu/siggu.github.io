@@ -3,7 +3,7 @@ layout: single
 title: "reflow와 repaint"
 categories: [til]
 # tags: ["머신러닝", "웹앱"]
-subcategory:
+subcategory: Web
 ---
 
 > 2025-03-22 TIL-reflow와 repaint

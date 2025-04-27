@@ -3,7 +3,7 @@ layout: single
 title: "브라우저 렌더링 파이프라인이란?"
 categories: [til]
 # tags: ["머신러닝", "웹앱"]
-subcategory: web
+subcategory: Web
 ---
 
 > 2025-03-29 TIL-브라우저 렌더링 파이프라인이란?
