@@ -6,7 +6,7 @@ categories: [til]
 subcategory: JavaScript
 ---
 
-> 2025-04-05 TIL-이벤트 전파
+> 2025-04-06 TIL-이벤트 전파
 
 # 이벤트 전파
 
