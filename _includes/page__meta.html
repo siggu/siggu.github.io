@@ -4,14 +4,20 @@ document.categories %}
   {% if document.categories %}
   <span class="page__meta-category">
     {% for category in document.categories %}
-    <a href="{{ site.baseurl }}/categories/{{ category | slugify }}"
-      >{{ category }}</a
-    >
-    {% endfor %} {% if document.subcategory %}
-    <span class="page__meta-subcategory">- {{ document.subcategory }}</span>
-    {% endif %}
+    <a href="{{ site.baseurl }}/categories/{{ category | slugify }}">
+      {{ category }}
+    </a>
+    {% if document.subcategory %}
+    <span class="page__meta-subcategory">
+      -
+      <a
+        href="{{ site.baseurl }}/categories/{{ category | slugify }}/{{ document.subcategory | slugify }}"
+      >
+        {{ document.subcategory }}
+      </a>
+    </span>
+    {% endif %} {% endfor %}
   </span>
   {% endif %}
 </p>
-
 {% endif %}

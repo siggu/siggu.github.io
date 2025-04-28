@@ -11,6 +11,23 @@
       📂 <span>전체 글 수</span> <span>{{ sum }}</span> <span>개</span>
     </li>
 
+    <!-- 최상위 카테고리: 프로젝트 -->
+    <li class="nav__sub-title">
+      <a href="{{ site.baseurl }}/categories/project">프로젝트</a>
+    </li>
+    <ul class="nav__sub-list">
+      {% assign project_posts = site.categories.project %} {% assign
+      project_subcategories = project_posts | map: "subcategory" | uniq %} {%
+      for subcat in project_subcategories %} {% if subcat %}
+      <li class="nav__sub-item">
+        <a href="{{ site.baseurl }}/categories/project/{{ subcat | slugify }}">
+          {{ subcat | capitalize }}
+          ({{ project_posts | where: "subcategory", subcat | size }})
+        </a>
+      </li>
+      {% endif %} {% endfor %}
+    </ul>
+
     <!-- 최상위 카테고리: TIL -->
     <li class="nav__sub-title">
       <a href="{{ site.baseurl }}/categories/til">TIL</a>
