@@ -11,18 +11,22 @@
       📂 <span>전체 글 수</span> <span>{{ sum }}</span> <span>개</span>
     </li>
 
-    <!-- 최상위 카테고리: 프로젝트 -->
+    <!-- 최상위 카테고리: NIPA-AI-AGENT -->
     <li class="nav__sub-title">
-      <a href="{{ site.baseurl }}/categories/project">프로젝트</a>
+      <a href="{{ site.baseurl }}/categories/nipa-ai-agent">NIPA AI Agent</a>
     </li>
     <ul class="nav__sub-list">
-      {% assign project_posts = site.categories.project %} {% assign
-      project_subcategories = project_posts | map: "subcategory" | uniq %} {%
-      for subcat in project_subcategories %} {% if subcat %}
+      {% assign nipa_posts = site.categories['nipa-ai-agent'] %} {% assign
+      nipa_subcategories = nipa_posts | map: "subcategory" | uniq %} {% for
+      subcat in nipa_subcategories %} {% if subcat %}
       <li class="nav__sub-item">
-        <a href="{{ site.baseurl }}/categories/project/{{ subcat | slugify }}">
+        <a
+          href="{{ site.baseurl }}/categories/nipa-ai-agent/{{
+            subcat | slugify
+          }}"
+        >
           {{ subcat | capitalize }}
-          ({{ project_posts | where: "subcategory", subcat | size }})
+          ({{ nipa_posts | where: "subcategory", subcat | size }})
         </a>
       </li>
       {% endif %} {% endfor %}
@@ -77,25 +81,6 @@
         </a>
       </li>
       {% endif %}
-    </ul>
-
-    <!-- 최상위 카테고리: NIPA-AI-AGENT -->
-    <li class="nav__sub-title">
-      <a href="{{ site.baseurl }}/categories/nipa-ai-agent"
-        >NIPA AI Agent</a
-      >
-    </li>
-    <ul class="nav__sub-list">
-      {% assign nipa_posts = site.categories['nipa-ai-agent'] %} {% assign
-      nipa_subcategories = nipa_posts | map: "subcategory" | uniq %} {% for
-      subcat in nipa_subcategories %} {% if subcat %}
-      <li class="nav__sub-item">
-        <a href="{{ site.baseurl }}/categories/nipa-ai-agent/{{ subcat | slugify }}">
-          {{ subcat | capitalize }}
-          ({{ nipa_posts | where: "subcategory", subcat | size }})
-        </a>
-      </li>
-      {% endif %} {% endfor %}
     </ul>
   </ul>
 </nav>
