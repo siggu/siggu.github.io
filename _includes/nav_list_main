@@ -86,14 +86,16 @@
       >
     </li>
     <ul class="nav__sub-list">
-      {% assign nipa_posts = site.categories['nipa-ai-agent'] %} {% if
-      nipa_posts %}
+      {% assign nipa_posts = site.categories['nipa-ai-agent'] %} {% assign
+      nipa_subcategories = nipa_posts | map: "subcategory" | uniq %} {% for
+      subcat in nipa_subcategories %} {% if subcat %}
       <li class="nav__sub-item">
-        <a href="{{ site.baseurl }}/categories/nipa-ai-agent">
-          NIPA 교육 ({{ nipa_posts | size }})
+        <a href="{{ site.baseurl }}/categories/nipa-ai-agent/{{ subcat | slugify }}">
+          {{ subcat | capitalize }}
+          ({{ nipa_posts | where: "subcategory", subcat | size }})
         </a>
       </li>
-      {% endif %}
+      {% endif %} {% endfor %}
     </ul>
   </ul>
 </nav>
