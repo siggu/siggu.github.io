@@ -1,4 +1,9 @@
-# 리눅스서버 관리자 명령
+---
+layout: single
+title: "리눅스 서버 관리자 명령"
+categories: [nipa-ai-agent]
+subcategory: Linux
+---
 
 ## 운영체제 관리
 

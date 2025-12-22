@@ -1,3 +1,10 @@
+---
+layout: single
+title: "Oracle 실습 환경 구성"
+categories: [nipa-ai-agent]
+subcategory: Web
+---
+
 ## 클라우드 와 vm 와 docker 와 Linux
 
 ### 가상머신(Virtual Machine)

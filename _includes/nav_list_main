@@ -78,5 +78,22 @@
       </li>
       {% endif %}
     </ul>
+
+    <!-- 최상위 카테고리: NIPA-AI-AGENT -->
+    <li class="nav__sub-title">
+      <a href="{{ site.baseurl }}/categories/nipa-ai-agent"
+        >NIPA AI Agent</a
+      >
+    </li>
+    <ul class="nav__sub-list">
+      {% assign nipa_posts = site.categories['nipa-ai-agent'] %} {% if
+      nipa_posts %}
+      <li class="nav__sub-item">
+        <a href="{{ site.baseurl }}/categories/nipa-ai-agent">
+          NIPA 교육 ({{ nipa_posts | size }})
+        </a>
+      </li>
+      {% endif %}
+    </ul>
   </ul>
 </nav>
