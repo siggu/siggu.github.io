@@ -5,6 +5,8 @@ categories: [nipa-ai-agent]
 subcategory: Linux
 ---
 
+> 2025-09-25 nipa-ai-agent-리눅스-명령어-및-Shell-Script
+
 ## 리다이렉션
 
 이름 그대로 **방향을 바꾼다**는 의미이다. 특정 명령어의 입력이나 출력의 흐름을 기본 설정(키보드 입력, 화면 출력)이 아닌 다른 곳(파일)으로 변경하는 기능이다.

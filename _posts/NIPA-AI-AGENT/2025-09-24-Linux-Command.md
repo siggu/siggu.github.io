@@ -5,6 +5,8 @@ categories: [nipa-ai-agent]
 subcategory: Linux
 ---
 
+> 2025-09-25 nipa-ai-agent-리눅스-서버-관리자-명령
+
 ## 운영체제 관리
 
 ```bash

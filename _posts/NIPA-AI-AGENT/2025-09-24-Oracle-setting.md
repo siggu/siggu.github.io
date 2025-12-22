@@ -5,6 +5,8 @@ categories: [nipa-ai-agent]
 subcategory: Web
 ---
 
+> 2025-09-24 nipa-ai-agent-Oracle-실습-환경-구성
+
 ## 클라우드 와 vm 와 docker 와 Linux
 
 ### 가상머신(Virtual Machine)

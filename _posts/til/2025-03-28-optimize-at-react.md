@@ -3,7 +3,6 @@ layout: single
 title: "리액트에서 성능 최적화를 위한 방법들"
 categories: [til]
 # tags: ["머신러닝", "웹앱"]
-featured: true
 subcategory: React
 ---
 
