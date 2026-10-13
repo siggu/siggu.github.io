@@ -1,5 +1,241 @@
----
-layout: home
-sidebar_main: true
-author_profile: true
----
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>siggu.github.io</title>
+  <meta name="description" content="김정목(siggu)이 만든 웹사이트 모음">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23111827'/><text x='16' y='22' font-family='sans-serif' font-size='17' font-weight='700' fill='white' text-anchor='middle'>s</text></svg>">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+  <style>
+    :root {
+      --bg: #f6f6f3;
+      --surface: #ffffff;
+      --text: #15171a;
+      --muted: #5f6670;
+      --line: #e4e4de;
+      --chip: #f0f0eb;
+      --shadow: 0 1px 2px rgba(20, 20, 20, .04), 0 8px 24px rgba(20, 20, 20, .06);
+      --shadow-hover: 0 2px 4px rgba(20, 20, 20, .05), 0 16px 40px rgba(20, 20, 20, .10);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1113;
+        --surface: #171a1d;
+        --text: #eceef0;
+        --muted: #9aa1a9;
+        --line: #272b30;
+        --chip: #212529;
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3);
+        --shadow-hover: 0 12px 32px rgba(0, 0, 0, .45);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
+      line-height: 1.6;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+    header { padding: 88px 0 48px; }
+    .handle {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 14px; font-weight: 600; color: var(--muted);
+      letter-spacing: .02em;
+    }
+    .handle .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
+    h1 {
+      margin: 14px 0 12px;
+      font-size: clamp(32px, 6vw, 48px);
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+    }
+    .lead { margin: 0; max-width: 560px; font-size: 17px; color: var(--muted); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      position: relative;
+      display: flex; flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+
+    .cover {
+      position: relative;
+      height: 168px;
+      padding: 22px 24px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      color: #fff;
+      overflow: hidden;
+    }
+    .cover .kind {
+      align-self: flex-start;
+      font-size: 12px; font-weight: 600; letter-spacing: .04em;
+      padding: 4px 10px; border-radius: 999px;
+      background: rgba(255, 255, 255, .18);
+      backdrop-filter: blur(4px);
+    }
+    .cover .glyph {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 15px; opacity: .9;
+      white-space: nowrap;
+    }
+    .cover .kind, .cover .glyph { position: relative; z-index: 1; }
+    .cover svg { position: absolute; right: -6px; bottom: -6px; opacity: .9; }
+
+    .ds .cover { background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%); }
+    .hb .cover { background: linear-gradient(135deg, #e11d48 0%, #7f1d1d 100%); }
+
+    .body { padding: 22px 24px 24px; display: flex; flex-direction: column; flex: 1; }
+    .body h2 { margin: 0; font-size: 22px; letter-spacing: -0.02em; font-weight: 750; }
+    .body h2 a { text-decoration: none; }
+    .body h2 a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+    .slug {
+      margin-top: 2px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px; color: var(--muted);
+    }
+    .body p { margin: 14px 0 18px; color: var(--muted); font-size: 15px; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 22px; padding: 0; list-style: none; }
+    .tags li {
+      font-size: 12.5px; font-weight: 500;
+      padding: 4px 10px; border-radius: 8px;
+      background: var(--chip); color: var(--muted);
+    }
+
+    .actions { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .go {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-weight: 650; font-size: 15px;
+    }
+    .go span { transition: transform .2s ease; }
+    .card:hover .go span { transform: translateX(3px); }
+    .source {
+      position: relative; z-index: 2;
+      font-size: 13px; color: var(--muted);
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 10px; border-radius: 8px;
+    }
+    .source:hover { background: var(--chip); color: var(--text); }
+
+    footer {
+      margin-top: 72px;
+      padding: 28px 0 48px;
+      border-top: 1px solid var(--line);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      font-size: 14px; color: var(--muted);
+    }
+    footer a { text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    @media (max-width: 520px) {
+      .wrap { padding: 0 16px; }
+      header { padding: 56px 0 32px; }
+      .grid { grid-template-columns: 1fr; }
+      .cover svg { transform: scale(.7); transform-origin: right bottom; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .card, .go span { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="handle"><span class="dot"></span>siggu</div>
+      <h1>만든 것들</h1>
+      <p class="lead">직접 만들어 배포한 웹사이트를 모아 두는 곳입니다. 카드를 누르면 해당 사이트로 이동합니다.</p>
+    </header>
+
+    <main class="grid">
+      <article class="card ds">
+        <div class="cover">
+          <span class="kind">학습 도구</span>
+          <span class="glyph">SELECT * FROM interview;</span>
+          <svg width="150" height="110" viewBox="0 0 150 110" aria-hidden="true">
+            <g fill="rgba(255,255,255,.22)">
+              <rect x="14" y="62" width="18" height="48" rx="4"/>
+              <rect x="42" y="40" width="18" height="70" rx="4"/>
+              <rect x="70" y="72" width="18" height="38" rx="4"/>
+              <rect x="98" y="22" width="18" height="88" rx="4"/>
+              <rect x="126" y="48" width="18" height="62" rx="4"/>
+            </g>
+          </svg>
+        </div>
+        <div class="body">
+          <h2><a href="https://siggu.github.io/data-science/">DA 면접 준비 랩</a></h2>
+          <div class="slug">data-science</div>
+          <p>데이터 분석가·사이언티스트 면접 준비용 웹 학습 환경. 면접 Q&amp;A, 브라우저에서 바로 돌리는 SQL·pandas, 자동 채점 문제은행, A/B 테스트 도구, SQLD·ADsP 대비까지 담았습니다.</p>
+          <ul class="tags">
+            <li>DuckDB-WASM</li>
+            <li>Pyodide</li>
+            <li>GitHub Pages</li>
+          </ul>
+          <div class="actions">
+            <span class="go">사이트 열기 <span aria-hidden="true">→</span></span>
+            <a class="source" href="https://github.com/siggu/data-science">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+              소스
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card hb">
+        <div class="cover">
+          <span class="kind">모의 투자 게임</span>
+          <span class="glyph">005930 ▼ −29.97%</span>
+          <svg width="170" height="110" viewBox="0 0 170 110" aria-hidden="true">
+            <polyline points="0,14 26,26 44,18 70,46 92,38 116,70 138,62 170,104" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="body">
+          <h2><a href="https://he-bought-dump-it.siggu100.workers.dev/">그가 샀습니다</a></h2>
+          <div class="slug">he-bought-dump-it</div>
+          <p>가상 자금으로 즐기는 실시간 주식 모의 투자. 실시간 시세로 사고팔다가 파산하면 미니게임과 월급으로 재기해야 합니다. 개미 광장, 숨겨진 배지도 있습니다.</p>
+          <ul class="tags">
+            <li>React</li>
+            <li>Hono</li>
+            <li>Cloudflare Workers</li>
+          </ul>
+          <div class="actions">
+            <span class="go">사이트 열기 <span aria-hidden="true">→</span></span>
+            <a class="source" href="https://github.com/siggu/he-bought-dump-it">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+              소스
+            </a>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <footer>
+      <span>© 김정목</span>
+      <a href="https://github.com/siggu">github.com/siggu</a>
+    </footer>
+  </div>
+</body>
+</html>
